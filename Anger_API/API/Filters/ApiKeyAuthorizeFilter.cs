@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,12 +7,13 @@ using System.Web.Http.Filters;
 using System.IO;
 
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 using Autofac.Integration.WebApi;
 
 using Anger_Library;
 using Anger_API.API.Attributes;
-using Newtonsoft.Json;
+
 using static Anger_Library.Anger;
 
 namespace Anger_API.API.Filters
