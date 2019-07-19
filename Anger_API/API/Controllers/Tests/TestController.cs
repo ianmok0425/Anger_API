@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 
 using Anger_API.API.Attributes;
@@ -10,12 +7,19 @@ using Anger_API.API.Models.Abstract;
 
 namespace Anger_API.API.Controllers.Tests
 {
-    using Anger_Library;
+    using Anger_API.Database.Logs;
     using Models.Tests;
+
     [ApiKeyAuthorize]
     public class TestController : AngerApiController
     {
-        public TestController(IResultFactory<AngerResult> resultFactory) : base(resultFactory) { }
+        public ILogRepository LogRepo { get; }
+        public TestController(
+            IResultFactory<AngerResult> resultFactory,
+            ILogRepository logRepo) : base(resultFactory)
+        {
+            LogRepo = logRepo ?? throw new ArgumentNullException(nameof(LogRepo));
+        }
         [HttpGet]
         public TestResponse Get([FromUri]int id)
         {

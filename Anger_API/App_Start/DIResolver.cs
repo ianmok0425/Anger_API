@@ -23,7 +23,8 @@ namespace Anger_API
             builder.RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies())
                 .Where(t => t.Name.EndsWith("Repository")
                 || t.Name.EndsWith("Service")
-                || t.Name.EndsWith("Factory"))
+                || t.Name.EndsWith("Factory")
+                || t.Name.EndsWith("Storage"))
                 .AsImplementedInterfaces();
 
 

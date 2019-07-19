@@ -14,7 +14,7 @@ using Autofac.Integration.WebApi;
 using Anger_Library;
 using Anger_API.API.Attributes;
 
-using static Anger_Library.Anger;
+using static Anger_API.Library.Anger;
 
 namespace Anger_API.API.Filters
 {

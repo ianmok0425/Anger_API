@@ -18,7 +18,6 @@ namespace Anger_API.API.Models.Abstract
         public string MessageSC;
 
         public AngerResult() { }
-
         public AngerResult(ReturnCode statusCode, string msg, ResponseBase d = null)
         {
             HttpStatusCode = (int)statusCode;

@@ -1,4 +1,5 @@
 ﻿using Anger_API.API.Models.Abstract;
+using static Anger_API.Database.AngerDB;
 
 namespace Anger_API.API.Controllers.Abstract
 {
