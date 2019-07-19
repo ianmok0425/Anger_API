@@ -176,12 +176,16 @@
     <Compile Include="Database\AngerDB.cs" />
     <Compile Include="Database\Logs\ErrorLog.cs" />
     <Compile Include="Database\Logs\Log.cs" />
+    <Compile Include="Database\Logs\RequestLog.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Library\Anger.cs" />
     <Compile Include="Library\GlobalExceptionHandler.cs" />
+    <Compile Include="Library\MessageLogging.cs" />
+    <Compile Include="Library\RequestResponseHandler.cs" />
     <Compile Include="Library\SqlErrorLogger.cs" />
+    <Compile Include="Library\SqlRequestLogger.cs" />
     <Compile Include="Library\UnhandledExceptionLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

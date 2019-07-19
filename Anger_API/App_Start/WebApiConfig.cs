@@ -26,6 +26,8 @@ namespace Anger_API
             config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
             //Registering UnhandledExceptionLogger
             config.Services.Replace(typeof(IExceptionLogger), new UnhandledExceptionLogger());
+            //Registering RequestResponseHandler
+            config.MessageHandlers.Add(new RequestResponseHandler());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

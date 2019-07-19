@@ -21,7 +21,7 @@ namespace Anger_API.Database
                 Conn.Open();
             }
 
-            public static void Close()
+            public static void CloseConnection()
             {
                 Conn?.Close();
                 Conn = null;

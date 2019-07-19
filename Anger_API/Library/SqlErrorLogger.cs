@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 using Anger_API.Database.Logs;
 using static Anger_API.Database.AngerDB;
@@ -33,6 +30,7 @@ namespace Anger_API.Library
                     cmd.Parameters.AddWithValue("@Method", log.Method);
                     cmd.ExecuteNonQuery();
                 }
+                DBManager.CloseConnection();
             }
             catch (Exception)
             {
