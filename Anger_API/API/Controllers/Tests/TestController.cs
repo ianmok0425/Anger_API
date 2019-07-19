@@ -13,13 +13,7 @@ namespace Anger_API.API.Controllers.Tests
     [ApiKeyAuthorize]
     public class TestController : AngerApiController
     {
-        public ILogRepository LogRepo { get; }
-        public TestController(
-            IResultFactory<AngerResult> resultFactory,
-            ILogRepository logRepo) : base(resultFactory)
-        {
-            LogRepo = logRepo ?? throw new ArgumentNullException(nameof(LogRepo));
-        }
+        public TestController(IResultFactory<AngerResult> resultFactory) : base(resultFactory) { }
         [HttpGet]
         public TestResponse Get([FromUri]int id)
         {

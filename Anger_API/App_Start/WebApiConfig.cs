@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
+
+using Anger_API.Library;
 
 namespace Anger_API
 {
@@ -9,6 +12,8 @@ namespace Anger_API
     {
         public static void Register(HttpConfiguration config)
         {
+            
+
             // Web API configuration and services
             var appXmlType = config.Formatters.XmlFormatter
                 .SupportedMediaTypes
@@ -17,6 +22,10 @@ namespace Anger_API
             config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
             // Web API routes
             config.MapHttpAttributeRoutes();
+            //Registering GlobalExceptionHandler
+            config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
+            //Registering UnhandledExceptionLogger
+            config.Services.Replace(typeof(IExceptionLogger), new UnhandledExceptionLogger());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
