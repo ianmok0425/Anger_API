@@ -10,15 +10,15 @@ using static Anger_API.Database.AngerDB;
 
 namespace Anger_API.Library
 {
-    public class SqlLogger
+    public class SqlErrorLogger
     {
-        public void InsertErrorLog(Log log)
+        public void InsertErrorLog(ErrorLog log)
         {
             try
             {
                 DBManager.OpenConnection();
-                string query = 
-                    "INSERT INTO Anger_Log(CreatedAt,Uri,Message, Method) " +
+                string query =
+                    $"INSERT INTO {log.TableName}(CreatedAt,Uri,Message, Method) " +
                     "VALUES(@CreatedAt,@Uri,@Message, @Method)";
                 using (var sqlConnection = DBManager.Conn)
                 {

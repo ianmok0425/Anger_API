@@ -174,13 +174,14 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Database\AngerDB.cs" />
+    <Compile Include="Database\Logs\ErrorLog.cs" />
     <Compile Include="Database\Logs\Log.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Library\Anger.cs" />
     <Compile Include="Library\GlobalExceptionHandler.cs" />
-    <Compile Include="Library\SqlLogger.cs" />
+    <Compile Include="Library\SqlErrorLogger.cs" />
     <Compile Include="Library\UnhandledExceptionLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

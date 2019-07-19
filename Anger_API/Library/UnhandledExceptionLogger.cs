@@ -37,8 +37,8 @@ namespace Anger_API.Library
             var requestMethod = context.Request.Method.ToString();
             var timeUtc = DateTime.Now;
 
-            SqlLogger sqlErrorLogging = new SqlLogger();
-            Log log = new Log()
+            SqlErrorLogger sqlErrorLogging = new SqlErrorLogger();
+            ErrorLog log = new ErrorLog()
             {
                 Message = JsonConvert.SerializeObject(msgObj, Formatting.Indented),
                 Uri = requestedURi,
