@@ -13,5 +13,6 @@ namespace Anger_API.Database.Logs
         public string Method { get; set; }
         public string Uri { get; set; }
         public string Message { get; set; }
+        public string RequestBody { get; set; }
     }
 }

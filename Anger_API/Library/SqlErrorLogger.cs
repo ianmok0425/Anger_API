@@ -15,8 +15,8 @@ namespace Anger_API.Library
             {
                 DBManager.OpenConnection();
                 string query =
-                    $"INSERT INTO {log.TableName}(CreatedAt,Uri,Message, Method) " +
-                    "VALUES(@CreatedAt,@Uri,@Message, @Method)";
+                    $"INSERT INTO {log.TableName}(CreatedAt,Uri,Message, Method, RequestBody) " +
+                    "VALUES(@CreatedAt,@Uri,@Message, @Method, @RequestBody)";
                 using (var sqlConnection = DBManager.Conn)
                 {
                     var cmd =
@@ -27,6 +27,7 @@ namespace Anger_API.Library
                     cmd.Parameters.AddWithValue("@CreatedAt", log.CreatedAt);
                     cmd.Parameters.AddWithValue("@Uri", log.Uri);
                     cmd.Parameters.AddWithValue("@Message", log.Message);
+                    cmd.Parameters.AddWithValue("@RequestBody", log.RequestBody);
                     cmd.Parameters.AddWithValue("@Method", log.Method);
                     cmd.ExecuteNonQuery();
                 }

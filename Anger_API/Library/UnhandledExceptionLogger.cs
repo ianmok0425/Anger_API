@@ -7,16 +7,20 @@ using System.Web.Http.ExceptionHandling;
 using Newtonsoft.Json.Linq;
 using Anger_API.Database.Logs;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Text;
 
 namespace Anger_API.Library
 {
     public class UnhandledExceptionLogger : ExceptionLogger
     {
-        public override void Log(ExceptionLoggerContext context)
+        public override async void Log(ExceptionLoggerContext context)
         {
             JObject msgObj = new JObject();
             DateTime Now = DateTime.UtcNow;
             var ex = context.Exception;
+            var request = context.Request;
+            var requestBody = await request.Content.ReadAsByteArrayAsync();
 
             msgObj.Add(new JProperty("Log Time : ", Now.ToString()));
             msgObj.Add(new JProperty("Exception Message : ", ex.Message));
@@ -40,6 +44,7 @@ namespace Anger_API.Library
             SqlErrorLogger sqlErrorLogging = new SqlErrorLogger();
             ErrorLog log = new ErrorLog()
             {
+                RequestBody = Encoding.UTF8.GetString(requestBody),
                 Message = JsonConvert.SerializeObject(msgObj, Formatting.Indented),
                 Uri = requestedURi,
                 Method = requestMethod,
