@@ -29,20 +29,6 @@ namespace Anger_API.Library
 
             var messageLoggingHandler = new MessageLogging();
 
-            var requestLog = new RequestLog()
-            {
-                Headers = responseHeadersString.ToString(),
-                AbsoluteUri = uriAccessed,
-                Host = userHostAddress,
-                Body = Encoding.UTF8.GetString(requestMessage),
-                UserHostAddress = userHostAddress,
-                UserAgent = userAgent,
-                Method = requestedMethod.ToString(),
-                StatusCode = string.Empty
-            };
-
-            messageLoggingHandler.IncomingMessageAsync(requestLog);
-
             var response = await base.SendAsync(request, cancellationToken);
 
             byte[] responseMessage;
@@ -56,11 +42,13 @@ namespace Anger_API.Library
                 Headers = responseHeadersString.ToString(),
                 AbsoluteUri = uriAccessed,
                 Host = userHostAddress,
-                Body = Encoding.UTF8.GetString(responseMessage),
+                RequestBody = Encoding.UTF8.GetString(requestMessage),
+                ResponseBody = Encoding.UTF8.GetString(responseMessage),
                 UserHostAddress = userHostAddress,
                 UserAgent = userAgent,
                 Method = requestedMethod.ToString(),
-                StatusCode = string.Empty
+                StatusCode = string.Empty,
+                CreatedAt = DateTime.UtcNow
             };
 
             messageLoggingHandler.OutgoingMessageAsync(responseLog);
