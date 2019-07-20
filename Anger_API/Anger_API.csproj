@@ -174,9 +174,15 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Database\AngerDB.cs" />
+    <Compile Include="Database\BaseTable.cs" />
+    <Compile Include="Database\IRepository.cs" />
     <Compile Include="Database\Logs\ErrorLog.cs" />
     <Compile Include="Database\Logs\Log.cs" />
     <Compile Include="Database\Logs\RequestLog.cs" />
+    <Compile Include="Database\Repository.cs" />
+    <Compile Include="Database\Tests\ITestRepository.cs" />
+    <Compile Include="Database\Tests\Test.cs" />
+    <Compile Include="Database\Tests\TestRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

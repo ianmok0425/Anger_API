@@ -9,6 +9,10 @@ using Newtonsoft.Json;
 
 namespace Anger_Library
 {
+    public class APIRequest
+    {
+        public virtual void Validate() { }
+    }
     public abstract class APIResult
     {
         [JsonIgnore]

@@ -7,13 +7,19 @@ using Anger_API.API.Models.Abstract;
 
 namespace Anger_API.API.Controllers.Tests
 {
-    using Anger_API.Database.Logs;
+    using Database.Tests;
     using Models.Tests;
 
     [ApiKeyAuthorize]
     public class TestController : AngerApiController
     {
-        public TestController(IResultFactory<AngerResult> resultFactory) : base(resultFactory) { }
+        public ITestRepository TestRepo { get; }
+        public TestController(
+            ITestRepository testRepo,
+            IResultFactory<AngerResult> resultFactory) : base(resultFactory)
+        {
+            TestRepo = testRepo ?? throw new ArgumentNullException(nameof(TestRepo));
+        }
         [HttpGet]
         public TestResponse Get([FromUri]int id)
         {
@@ -23,6 +29,12 @@ namespace Anger_API.API.Controllers.Tests
         public AngerResult Post([FromBody] TestRequest model)
         {
             if (model == null) throw new NullReferenceException();
+            model.Validate();
+            Test test = new Test()
+            {
+                Content = "Content For Test"
+            };
+            TestRepo.Create(test);
             var rsp = new TestResponse() { Message = "test" };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
         }

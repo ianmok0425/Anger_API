@@ -7,9 +7,15 @@ using Anger_Library;
 
 namespace Anger_API.API.Models.Tests
 {
-    public class TestRequest
+    public class TestRequest : APIRequest
     {
-        public int Id { get; set; }
+        public string ID { get; set; }
+        public int IDVal;
+        public override void Validate()
+        {
+            base.Validate();
+            APIException.ExRequiredInt(ID, nameof(ID), ref IDVal);
+        }
     }
     public class TestResponse : ResponseBase
     {
