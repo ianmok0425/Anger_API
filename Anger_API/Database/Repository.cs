@@ -5,7 +5,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 
-using SqlKata;
 using SqlKata.Compilers;
 using SqlKata.Execution;
 
@@ -15,12 +14,13 @@ namespace Anger_API.Database
 {
     public class Repository : IRepository
     {
+        public virtual string TableName { get; set; }
         public void Create(Table table)
         {
             try
             {
                 // Ignore fields
-                List<string> ignoreFields = new List<string>() { "TableName", "ID" };
+                List<string> ignoreFields = new List<string>() { "ID" };
 
                 // Common properties
                 table.CreatedAt = DateTime.UtcNow;
@@ -49,7 +49,7 @@ namespace Anger_API.Database
                 paramNames = paramNames.TrimEnd(',');
 
                 string query =
-                    $"INSERT INTO {table.TableName}({fieldNames}) " +
+                    $"INSERT INTO {TableName}({fieldNames}) " +
                     $"VALUES({paramNames})";
 
                 DBManager.OpenConnection();
@@ -73,12 +73,12 @@ namespace Anger_API.Database
             }
             
         }
-        public T RetrieveByID<T>(Table table, long ID)
+        public T RetrieveByID<T>(long ID)
         {
             DBManager.OpenConnection();
             var compiler = new SqlServerCompiler();
             var db = new QueryFactory(DBManager.Conn, compiler);
-            var obj = db.Query(table.TableName)
+            var obj = db.Query(TableName)
                 .Where(nameof(ID), ID)
                 .Get<T>()
                 .FirstOrDefault();

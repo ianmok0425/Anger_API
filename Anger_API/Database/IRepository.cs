@@ -3,6 +3,6 @@
     public interface IRepository
     {
         void Create(Table table);
-        T RetrieveByID<T>(Table table, long ID);
+        T RetrieveByID<T>(long ID);
     }
 }
