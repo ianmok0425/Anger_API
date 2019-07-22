@@ -2,6 +2,7 @@
 {
     public interface IRepository
     {
-        void Create(BaseTable table);
+        void Create(Table table);
+        T RetrieveByID<T>(Table table, long ID);
     }
 }

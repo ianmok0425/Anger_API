@@ -2,19 +2,25 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Reflection;
+
+using SqlKata;
+using SqlKata.Compilers;
+using SqlKata.Execution;
+
 using static Anger_API.Database.AngerDB;
 
 namespace Anger_API.Database
 {
-    public class Repository
+    public class Repository : IRepository
     {
-        public void Create(BaseTable table)
+        public void Create(Table table)
         {
             try
             {
                 // Ignore fields
-                List<string> ignoreFields = new List<string>() { "TableName" };
+                List<string> ignoreFields = new List<string>() { "TableName", "ID" };
 
                 // Common properties
                 table.CreatedAt = DateTime.UtcNow;
@@ -66,6 +72,17 @@ namespace Anger_API.Database
                 throw;
             }
             
+        }
+        public T RetrieveByID<T>(Table table, long ID)
+        {
+            DBManager.OpenConnection();
+            var compiler = new SqlServerCompiler();
+            var db = new QueryFactory(DBManager.Conn, compiler);
+            var obj = db.Query(table.TableName)
+                .Where(nameof(ID), ID)
+                .Get<T>()
+                .FirstOrDefault();
+            return obj;
         }
     }
 }

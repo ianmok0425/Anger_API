@@ -2,9 +2,10 @@
 
 namespace Anger_API.Database
 {
-    public class BaseTable
+    public class Table
     {
         public virtual string TableName { get; set; }
+        public long? ID { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 }

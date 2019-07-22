@@ -30,12 +30,8 @@ namespace Anger_API.API.Controllers.Tests
         {
             if (model == null) throw new NullReferenceException();
             model.Validate();
-            Test test = new Test()
-            {
-                Content = "Content For Test"
-            };
-            TestRepo.Create(test);
-            var rsp = new TestResponse() { Message = "test" };
+            var test = TestRepo.RetrieveByID<Test>(new Test(), 5); 
+            var rsp = new TestResponse() { Message = "test", Test = test };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
         }
     }
