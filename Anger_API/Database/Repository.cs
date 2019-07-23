@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 using SqlKata.Compilers;
 using SqlKata.Execution;
@@ -15,7 +16,7 @@ namespace Anger_API.Database
     public class Repository : IRepository
     {
         public virtual string TableName { get; set; }
-        public void Create(Table table)
+        public async Task Create(Table table)
         {
             try
             {
@@ -63,7 +64,7 @@ namespace Anger_API.Database
                     {
                         cmd.Parameters.AddWithValue(param.Key, param.Value);
                     }
-                    cmd.ExecuteNonQuery();
+                    await cmd.ExecuteNonQueryAsync();
                 }
                 DBManager.CloseConnection();
             }
@@ -73,16 +74,15 @@ namespace Anger_API.Database
             }
             
         }
-        public T RetrieveByID<T>(long ID)
+        public async Task<T> RetrieveByID<T>(long ID)
         {
             DBManager.OpenConnection();
             var compiler = new SqlServerCompiler();
             var db = new QueryFactory(DBManager.Conn, compiler);
-            var obj = db.Query(TableName)
+            var objs = await db.Query(TableName)
                 .Where(nameof(ID), ID)
-                .Get<T>()
-                .FirstOrDefault();
-            return obj;
+                .GetAsync<T>();
+            return objs.FirstOrDefault();
         }
     }
 }

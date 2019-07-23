@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Http;
+using System.Threading.Tasks;
 
 using Anger_API.API.Attributes;
 using Anger_API.API.Controllers.Abstract;
@@ -26,7 +27,7 @@ namespace Anger_API.API.Controllers.Tests
             return new TestResponse() { Message = "Get" };
         }
         [HttpPost]
-        public AngerResult Post([FromBody] TestRequest model)
+        public async Task<AngerResult> Post([FromBody] TestRequest model)
         {
             if (model == null) throw new NullReferenceException();
             model.Validate();
@@ -34,8 +35,8 @@ namespace Anger_API.API.Controllers.Tests
             {
                 Content = "32593289432fdsfew"
             };
-            TestRepo.Create(t);
-            var test = TestRepo.RetrieveByID<Test>(6); 
+            await TestRepo.Create(t);
+            var test = await TestRepo.RetrieveByID<Test>(6); 
             var rsp = new TestResponse() { Message = "test", Test = test };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
         }
