@@ -1,4 +1,11 @@
 ﻿{
   "ApiKey": "9eda60e8-d61a-4a8e-b9f1-fbb576c355b3",
-  "ConnectionString": "Server=IAN-X280\\ANGER_SERVER;Database=AngerDEVSQLDB;Trusted_Connection=true;Connection Lifetime=0;Connect Timeout=30;"
+  "ConnectionString": "Server=IAN-X280\\ANGER_SERVER;Database=AngerDEVSQLDB;Trusted_Connection=true;Connection Lifetime=0;Connect Timeout=30;",
+  "Mail": {
+    "SmtpAddress": "smtp.live.com",
+    "Port": 25,
+    "Address": "",
+    "Account": "",
+    "Password": ""
+  }
 }

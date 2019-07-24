@@ -196,6 +196,8 @@
     </Compile>
     <Compile Include="Library\Anger.cs" />
     <Compile Include="Library\GlobalExceptionHandler.cs" />
+    <Compile Include="Library\MailService\IMailService.cs" />
+    <Compile Include="Library\MailService\MailService.cs" />
     <Compile Include="Library\MessageLogging.cs" />
     <Compile Include="Library\RequestResponseHandler.cs" />
     <Compile Include="Library\SqlErrorLogger.cs" />

@@ -14,6 +14,15 @@ namespace Anger_API.Library
         {
             public string ApiKey { get; set; }
             public string ConnectionString { get; set; }
+            public Mail Mail { get; set; }
+        }
+        public class Mail
+        {
+            public string SmtpAddress { get; set; }
+            public int? Port { get; set; }
+            public string Address { get; set; }
+            public string Account { get; set; }
+            public string Password { get; set; }
         }
         public static Config GetConfig()
         {
@@ -29,9 +38,18 @@ namespace Anger_API.Library
                 JsonSerializer serializer = new JsonSerializer();
                 c = (Config)serializer.Deserialize(new JTokenReader(o2), typeof(Config));
 
-                if (string.IsNullOrWhiteSpace(c.ApiKey))
+                if (string.IsNullOrWhiteSpace(c.ApiKey) ||
+                    string.IsNullOrWhiteSpace(c.ConnectionString))
                 {
-                    throw new Exception("Missing ApiKey in Config.json.");
+                    throw new Exception("Missing Information in Config.json.");
+                }
+                if (string.IsNullOrWhiteSpace(c.Mail.SmtpAddress) ||
+                    c.Mail.Port == null ||
+                    string.IsNullOrWhiteSpace(c.Mail.Address) ||
+                    string.IsNullOrWhiteSpace(c.Mail.Account) ||
+                    string.IsNullOrWhiteSpace(c.Mail.Password))
+                {
+                    throw new Exception("Missing Mail Information in Config.json.");
                 }
             }
             return c;
