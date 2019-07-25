@@ -6,7 +6,7 @@ namespace Anger_API.API.Models.Abstract
     {
         public AngerResult CreateResult(ReturnCode statusCode, APIReturnCode apiCode, ResponseBase d = null)
         {
-            var returnMsg = new APIMessage();
+            var returnMsg = new APIMessage(apiCode);
 
             return new AngerResult()
             {

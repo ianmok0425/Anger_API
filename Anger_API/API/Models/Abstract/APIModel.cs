@@ -46,11 +46,16 @@ namespace Anger_API.API.Models.Abstract
         public string MessageTC;
         public string MessageSC;
 
-        public APIMessage()
+        public APIMessage(APIReturnCode code)
         {
-            Message = "Success";
-            MessageTC = "成功";
-            MessageSC = "成功";
+            switch (code)
+            {
+                case APIReturnCode.Success:
+                    Message = "Success";
+                    MessageTC = "成功";
+                    MessageSC = "成功";
+                    break;
+            }
         }
     }
 
