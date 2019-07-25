@@ -141,11 +141,13 @@
     <Compile Include="API\Attributes\ApiKeyAuthorize.cs" />
     <Compile Include="API\Controllers\Abstract\AngerApiController.cs" />
     <Compile Include="API\Controllers\Abstract\BaseApiController.cs" />
+    <Compile Include="API\Controllers\PreMembers\PreMemberController.cs" />
     <Compile Include="API\Controllers\Tests\TestController.cs" />
     <Compile Include="API\Filters\ApiKeyAuthorizeFilter.cs" />
     <Compile Include="API\Models\Abstract\APIModel.cs" />
     <Compile Include="API\Models\Abstract\IResultFactory.cs" />
     <Compile Include="API\Models\Abstract\ResultFactory.cs" />
+    <Compile Include="API\Models\PreMembers\RegPreMemberModels.cs" />
     <Compile Include="API\Models\Tests\TestModels.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DIResolver.cs" />
@@ -187,6 +189,9 @@
     <Compile Include="Database\Logs\ErrorLog.cs" />
     <Compile Include="Database\Logs\Log.cs" />
     <Compile Include="Database\Logs\RequestLog.cs" />
+    <Compile Include="Database\PreMembers\IPreMemberRepository.cs" />
+    <Compile Include="Database\PreMembers\PreMember.cs" />
+    <Compile Include="Database\PreMembers\PreMemberRepository.cs" />
     <Compile Include="Database\Repository.cs" />
     <Compile Include="Database\Tests\ITestRepository.cs" />
     <Compile Include="Database\Tests\Test.cs" />
