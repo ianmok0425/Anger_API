@@ -4,8 +4,8 @@
   "Mail": {
     "SmtpAddress": "smtp.live.com",
     "Port": 25,
-    "Address": "",
-    "Account": "",
-    "Password": ""
+    "Address": "ian_22@live.hk",
+    "Account": "ian_22@live.hk",
+    "Password": "ianmok1234"
   }
 }

@@ -55,6 +55,23 @@ namespace Anger_API.API.Models.Abstract
                     MessageTC = "成功";
                     MessageSC = "成功";
                     break;
+
+                // Reg PreMember
+                case APIReturnCode.EmailExist:
+                    Message = "Email exist";
+                    MessageTC = "電郵已被註冊";
+                    MessageSC = "电邮已被注册";
+                    break;
+                case APIReturnCode.MobileExist:
+                    Message = "Mobile exist";
+                    MessageTC = "手機已被註冊";
+                    MessageSC = "手机已被注册";
+                    break;
+                case APIReturnCode.AccountExist:
+                    Message = "Account exist";
+                    MessageTC = "帳號已被註冊";
+                    MessageSC = "帐号已被注册";
+                    break;
             }
         }
     }
@@ -80,5 +97,10 @@ namespace Anger_API.API.Models.Abstract
     public enum APIReturnCode
     {
         Success = 0,
+
+        //Reg PreMember
+        EmailExist = 1,
+        MobileExist = 2,
+        AccountExist = 3,
     }
 }
