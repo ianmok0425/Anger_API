@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 using Anger_API.API.Attributes;
@@ -14,16 +15,19 @@ namespace Anger_API.API.Controllers.PreMembers
     [ApiKeyAuthorize]
     public class PreMemberController : AngerApiController
     {
+        public IPreMemberRepository PreMemberRepo { get; }
         public IMemberRepository MemberRepo { get; }
         public PreMemberController(
+            IPreMemberRepository preMemberRepo,
             IMemberRepository memberRepo,
            IResultFactory<AngerResult> resultFactory) : base(resultFactory)
         {
+            PreMemberRepo = preMemberRepo ?? throw new ArgumentNullException(nameof(PreMemberRepo));
             MemberRepo = memberRepo ?? throw new ArgumentNullException(nameof(MemberRepo));
         }
         [HttpPost]
         [Route("api/preMember/Reg")]
-        public AngerResult RegPreMember([FromBody] RegPreMemberRequest model)
+        public async Task<AngerResult> RegPreMember([FromBody] RegPreMemberRequest model)
         {
             if (model == null) throw new NullReferenceException();
             model.Validate();
@@ -38,6 +42,7 @@ namespace Anger_API.API.Controllers.PreMembers
             APIReturnCode apiReturnCode = MemberRepo.VerifyNewMember(preMember);
             if (apiReturnCode == APIReturnCode.Success)
             {
+                await PreMemberRepo.CreateAndSendVerifyCode(preMember);
                 var rsp = new RegPrememberResponse() { };
                 return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
             }

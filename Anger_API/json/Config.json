@@ -1,11 +1,11 @@
 ﻿{
   "ApiKey": "9eda60e8-d61a-4a8e-b9f1-fbb576c355b3",
-  "ConnectionString": "Server=192.168.1.127;Database=AngerDEVSQLDB;User Id=sa;Password=Anger2020;Connection Lifetime=0;Connect Timeout=30;",
+  "ConnectionString": "Server=IAN-X280\\ANGER_SERVER;Database=AngerDEVSQLDB;User Id=sa;Password=Anger2020;Connection Lifetime=0;Connect Timeout=30;",
   "Mail": {
     "SmtpAddress": "smtp.live.com",
     "Port": 25,
     "Address": "ian_22@live.hk",
     "Account": "ian_22@live.hk",
-    "Password": "ianmok1234"
+    "Password": "mok94376749"
   }
 }

@@ -7,5 +7,7 @@
         public string Email { get; set; }
         public string Account { get; set; }
         public string Password { get; set; }
+        public string VerifyCode { get; set; }
+        public bool Verified { get; set; }
     }
 }
