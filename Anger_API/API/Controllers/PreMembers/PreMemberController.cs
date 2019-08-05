@@ -43,7 +43,7 @@ namespace Anger_API.API.Controllers.PreMembers
             if (apiReturnCode == APIReturnCode.Success)
             {
                 await PreMemberRepo.CreateAndSendVerifyCode(preMember);
-                var rsp = new RegPrememberResponse() { };
+                var rsp = new RegPrememberResponse() { PreMemberID = "9" }; // to be continue should not be static
                 return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
             }
             else

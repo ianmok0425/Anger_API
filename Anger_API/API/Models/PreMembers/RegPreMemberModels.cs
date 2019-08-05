@@ -27,5 +27,6 @@ namespace Anger_API.API.Models.PreMembers
 
     public class RegPrememberResponse : ResponseBase
     {
+        public string PreMemberID { get; set; }
     }
 }
