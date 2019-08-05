@@ -26,7 +26,7 @@ namespace Anger_API.API.Controllers.PreMembers
             MemberRepo = memberRepo ?? throw new ArgumentNullException(nameof(MemberRepo));
         }
         [HttpPost]
-        [Route("api/preMember/Reg")]
+        [Route("api/preMember/reg")]
         public async Task<AngerResult> RegPreMember([FromBody] RegPreMemberRequest model)
         {
             if (model == null) throw new NullReferenceException();
@@ -48,6 +48,28 @@ namespace Anger_API.API.Controllers.PreMembers
             }
             else
                 return ResultFactory.CreateResult(ReturnCode.Error500, apiReturnCode);
+        }
+        [HttpPost]
+        [Route("api/preMember/verify")]
+        public async Task<AngerResult> VerifyPreMember([FromBody]VerifyPreMemberRequest model)
+        {
+            if (model == null) throw new NullReferenceException();
+            model.Validate();
+
+            long preMemberID = Convert.ToInt64(model.PreMemberID);
+            PreMember preMember = await PreMemberRepo.RetrieveByID<PreMember>(preMemberID);
+
+            // Verify PreMember
+            if (preMember == null)
+                return ResultFactory.CreateResult(ReturnCode.Error500, APIReturnCode.PreMemberNotExist);
+            else if (preMember.Verified == true)
+                return ResultFactory.CreateResult(ReturnCode.Error500, APIReturnCode.PreMemberHasBeenVerified);
+            else if (preMember.VerifyCode != model.VerifyCode)
+                return ResultFactory.CreateResult(ReturnCode.Error500, APIReturnCode.InvalidVerifyCode);
+            // Reg As Member
+            await PreMemberRepo.Verified(preMemberID, preMember);
+
+            return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success);
         }
     }
 }

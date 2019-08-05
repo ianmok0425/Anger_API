@@ -6,5 +6,6 @@ namespace Anger_API.Database
     {
         Task<string> CreateAsync(Table table);
         Task<T> RetrieveByID<T>(long ID);
+        Task Update(long ID, Table table);
     }
 }

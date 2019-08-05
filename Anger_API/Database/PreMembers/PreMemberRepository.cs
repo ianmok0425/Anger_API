@@ -1,6 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+
+using SqlKata.Compilers;
+using SqlKata.Execution;
+
+using Anger_API.API.Models.Abstract;
 using Anger_API.Library.MailService;
+using static Anger_API.Database.AngerDB;
 
 namespace Anger_API.Database.PreMembers
 {
@@ -21,6 +27,11 @@ namespace Anger_API.Database.PreMembers
             MailService.SendVerifyEmail(verifyCode, preMember.Name, preMember.Email);
             string preMemberID = await base.CreateAsync(preMember);
             return preMemberID;
+        }
+        public async Task Verified(long preMemberID, PreMember preMember)
+        {
+            preMember.Verified = true;
+            await base.Update(preMemberID, preMember);
         }
     }
 }

@@ -72,6 +72,21 @@ namespace Anger_API.API.Models.Abstract
                     MessageTC = "帳號已被註冊";
                     MessageSC = "帐号已被注册";
                     break;
+                case APIReturnCode.PreMemberNotExist:
+                    Message = "Premember not exist";
+                    MessageTC = "帳號不存在";
+                    MessageSC = "帐号不存在";
+                    break;
+                case APIReturnCode.PreMemberHasBeenVerified:
+                    Message = "PreMember has been verified";
+                    MessageTC = "帳號已驗證";
+                    MessageSC = "帐号已验证";
+                    break;  
+                case APIReturnCode.InvalidVerifyCode:
+                    Message = "Invalid Verfiy Code";
+                    MessageTC = "驗證碼不正確";
+                    MessageSC = "验证码不正确";
+                    break;
             }
         }
     }
@@ -102,5 +117,8 @@ namespace Anger_API.API.Models.Abstract
         EmailExist = 1,
         MobileExist = 2,
         AccountExist = 3,
+        PreMemberNotExist = 4,
+        PreMemberHasBeenVerified = 5,
+        InvalidVerifyCode = 6
     }
 }

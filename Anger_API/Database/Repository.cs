@@ -36,5 +36,14 @@ namespace Anger_API.Database
                 .GetAsync<T>();
             return objs.FirstOrDefault();
         }
+        public async Task Update(long ID, Table table)
+        {
+            DBManager.OpenConnection();
+            var compiler = new SqlServerCompiler();
+            var db = new QueryFactory(DBManager.Conn, compiler);
+            var objs = db.Query(TableName)
+                .Where(nameof(ID), ID)
+                .UpdateAsync(table);
+        }
     }
 }
