@@ -3,7 +3,7 @@
   "ConnectionString": "Server=192.168.1.127;Database=AngerDEVSQLDB;User Id=sa;Password=Anger2020;Connection Lifetime=0;Connect Timeout=30;",
   "Mail": {
     "SmtpAddress": "smtp.live.com",
-    "Port": 25,
+    "Port": 587,
     "Address": "ian_22@live.hk",
     "Account": "ian_22@live.hk",
     "Password": "mok94376749"
