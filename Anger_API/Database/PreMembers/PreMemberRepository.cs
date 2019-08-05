@@ -12,14 +12,15 @@ namespace Anger_API.Database.PreMembers
         {
             MailService = mailService ?? throw new ArgumentNullException(nameof(MailService));
         }
-        public async Task CreateAndSendVerifyCode(PreMember preMember)
+        public async Task<string> CreateAndSendVerifyCode(PreMember preMember)
         {
             Random random = new Random();
             string verifyCode = random.Next(100000, 999999).ToString();
             preMember.VerifyCode = verifyCode;
             preMember.Verified = false;
             MailService.SendVerifyEmail(verifyCode, preMember.Name, preMember.Email);
-            await base.Create(preMember);
+            string preMemberID = await base.CreateAsync(preMember);
+            return preMemberID;
         }
     }
 }

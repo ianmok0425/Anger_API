@@ -39,7 +39,7 @@ namespace Anger_API.API.Controllers.Tests
             {
                 Content = "32593289432fdsfew"
             };
-            await TestRepo.Create(t);
+            await TestRepo.CreateAsync(t);
             var test = await TestRepo.RetrieveByID<Test>(6);
             MailService.SendVerifyEmail("123423", "莫先生", "ianmok@itopia.com.hk");
             var rsp = new TestResponse() { Message = "test", Test = test };

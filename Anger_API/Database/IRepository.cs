@@ -4,7 +4,7 @@ namespace Anger_API.Database
 {
     public interface IRepository
     {
-        Task Create(Table table);
+        Task<string> CreateAsync(Table table);
         Task<T> RetrieveByID<T>(long ID);
     }
 }
