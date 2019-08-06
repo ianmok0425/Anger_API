@@ -9,11 +9,11 @@ namespace Anger_API.API.Models.PreMembers
     public class VerifyPreMemberRequest : APIRequest
     {
         public string PreMemberID { get; set; }
-        public string VerifyCode { get; set; }
+        public string Code { get; set; }
         public override void Validate()
         {
             APIException.ExRequired(PreMemberID, nameof(PreMemberID));
-            APIException.ExRequired(VerifyCode, nameof(VerifyCode));
+            APIException.ExRequired(Code, nameof(Code));
         }
     }
     public class VerifyPreMemberReponse : ResponseBase
