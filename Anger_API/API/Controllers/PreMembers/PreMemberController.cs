@@ -66,9 +66,11 @@ namespace Anger_API.API.Controllers.PreMembers
                 return ResultFactory.CreateResult(ReturnCode.Error500, APIReturnCode.PreMemberHasBeenVerified);
             else if (preMember.VerifyCode != model.VerifyCode)
                 return ResultFactory.CreateResult(ReturnCode.Error500, APIReturnCode.InvalidVerifyCode);
-            // Reg As Member
             await PreMemberRepo.Verified(preMemberID, preMember);
 
+            // Reg As Member
+            Member member = new Member(preMember);
+            await MemberRepo.CreateAsync(member);
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success);
         }
     }
