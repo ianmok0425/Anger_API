@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace Anger_API.Library.MailService
 {
     public class MailService : IMailService
     {
-        public void SendVerifyEmail(string verifyCode, string saluation, string toAddress)
+        public async Task SendVerifyEmail(string verifyCode, string saluation, string toAddress)
         {
             var mailInfo = Anger.GetConfig().Mail;
 
@@ -26,7 +27,7 @@ namespace Anger_API.Library.MailService
             SmtpServer.Credentials = new System.Net.NetworkCredential(mailInfo.Account, mailInfo.Password);
             SmtpServer.EnableSsl = true;
 
-            SmtpServer.Send(mail);
+            await SmtpServer.SendMailAsync(mail);
         }
     }
 }

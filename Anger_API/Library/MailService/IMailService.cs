@@ -1,7 +1,9 @@
-﻿namespace Anger_API.Library.MailService
+﻿using System.Threading.Tasks;
+
+namespace Anger_API.Library.MailService
 {
     public interface IMailService
     {
-        void SendVerifyEmail(string verifyCode, string saluation ,string toAddress);
+        Task SendVerifyEmail(string verifyCode, string saluation ,string toAddress);
     }
 }

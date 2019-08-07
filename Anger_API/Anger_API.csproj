@@ -148,6 +148,7 @@
     <Compile Include="API\Models\Abstract\IResultFactory.cs" />
     <Compile Include="API\Models\Abstract\ResultFactory.cs" />
     <Compile Include="API\Models\PreMembers\RegPreMemberModels.cs" />
+    <Compile Include="API\Models\PreMembers\ResendVerifyCodeModels.cs" />
     <Compile Include="API\Models\PreMembers\VerifyPreMemberModels.cs" />
     <Compile Include="API\Models\Tests\TestModels.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

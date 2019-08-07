@@ -73,5 +73,21 @@ namespace Anger_API.API.Controllers.PreMembers
             await MemberRepo.CreateAsync(member);
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success);
         }
+
+        [HttpPost]
+        [Route("api/preMember/resendVerifyCode")]
+        public async Task<AngerResult> ResendVerifyCode([FromBody]ResendVerifyCodeRquest model)
+        {
+            if (model == null) throw new NullReferenceException();
+            model.Validate();
+            long preMemberID = Convert.ToInt64(model.PreMemberID);
+            PreMember preMember = await PreMemberRepo.RetrieveByID<PreMember>(preMemberID);
+
+            if (preMember == null)
+                return ResultFactory.CreateResult(ReturnCode.Error500, APIReturnCode.PreMemberNotExist);
+
+            await PreMemberRepo.ResendVerifyCode(preMemberID, preMember);
+            return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success);
+        }
     }
 }
