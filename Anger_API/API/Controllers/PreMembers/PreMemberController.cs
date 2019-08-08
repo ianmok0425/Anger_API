@@ -37,7 +37,8 @@ namespace Anger_API.API.Controllers.PreMembers
                 Email = model.Email,
                 Mobile = model.Mobile,
                 Name = model.Name,
-                Password = model.Password
+                Password = model.Password,
+                Status = PreMemberStatus.Active
             };
             APIReturnCode apiReturnCode = MemberRepo.VerifyNewMember(preMember);
             if (apiReturnCode == APIReturnCode.Success)

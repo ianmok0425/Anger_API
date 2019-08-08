@@ -1,4 +1,6 @@
-﻿namespace Anger_API.Database.PreMembers
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Anger_API.Database.PreMembers
 {
     public class PreMember : Table
     {
@@ -9,5 +11,12 @@
         public string Password { get; set; }
         public string VerifyCode { get; set; }
         public bool Verified { get; set; }
+        [EnumDataType(typeof(PreMemberStatus))]
+        public PreMemberStatus Status { get; set; }
+    }
+    public enum PreMemberStatus
+    {
+        Active = 0,
+        Inactive = 1
     }
 }

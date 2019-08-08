@@ -1,4 +1,5 @@
-﻿using Anger_API.Database.PreMembers;
+﻿using System.ComponentModel.DataAnnotations;
+using Anger_API.Database.PreMembers;
 
 namespace Anger_API.Database.Members
 {
@@ -9,6 +10,8 @@ namespace Anger_API.Database.Members
         public string Email { get; set; }
         public string Account { get; set; }
         public string Password { get; set; }
+        [EnumDataType(typeof(MemberStatus))]
+        public MemberStatus Status { get; set; }
         public Member(PreMember preMember)
         {
             Name = preMember.Name;
@@ -16,6 +19,12 @@ namespace Anger_API.Database.Members
             Email = preMember.Email;
             Account = preMember.Account;
             Password = preMember.Password;
+            Status = (MemberStatus)preMember.Status;
+        }
+        public enum MemberStatus
+        {
+            Active = 1,
+            Inactive = 2
         }
     }
 }
