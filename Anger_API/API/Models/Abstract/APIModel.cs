@@ -87,6 +87,16 @@ namespace Anger_API.API.Models.Abstract
                     MessageTC = "驗證碼不正確";
                     MessageSC = "验证码不正确";
                     break;
+                case APIReturnCode.InvalidAccount:
+                    Message = "Invalid Account";
+                    MessageTC = "帳號錯誤";
+                    MessageSC = "帐号错误";
+                    break;
+                case APIReturnCode.InvalidPassword:
+                    Message = "Invalid Password";
+                    MessageTC = "密碼錯誤";
+                    MessageSC = "密码错误";
+                    break;
             }
         }
     }
@@ -113,12 +123,16 @@ namespace Anger_API.API.Models.Abstract
     {
         Success = 0,
 
-        //Reg PreMember
+        // Reg PreMember
         EmailExist = 1,
         MobileExist = 2,
         AccountExist = 3,
         PreMemberNotExist = 4,
         PreMemberHasBeenVerified = 5,
-        InvalidVerifyCode = 6
+        InvalidVerifyCode = 6,
+
+        // Member
+        InvalidAccount = 7,
+        InvalidPassword = 8
     }
 }

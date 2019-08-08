@@ -12,15 +12,6 @@ namespace Anger_API.Database.Members
         public string Password { get; set; }
         [EnumDataType(typeof(MemberStatus))]
         public MemberStatus Status { get; set; }
-        public Member(PreMember preMember)
-        {
-            Name = preMember.Name;
-            Mobile = preMember.Mobile;
-            Email = preMember.Email;
-            Account = preMember.Account;
-            Password = preMember.Password;
-            Status = (MemberStatus)preMember.Status;
-        }
         public enum MemberStatus
         {
             Active = 1,

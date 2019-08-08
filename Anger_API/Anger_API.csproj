@@ -141,12 +141,14 @@
     <Compile Include="API\Attributes\ApiKeyAuthorize.cs" />
     <Compile Include="API\Controllers\Abstract\AngerApiController.cs" />
     <Compile Include="API\Controllers\Abstract\BaseApiController.cs" />
+    <Compile Include="API\Controllers\Members\MemberController.cs" />
     <Compile Include="API\Controllers\PreMembers\PreMemberController.cs" />
     <Compile Include="API\Controllers\Tests\TestController.cs" />
     <Compile Include="API\Filters\ApiKeyAuthorizeFilter.cs" />
     <Compile Include="API\Models\Abstract\APIModel.cs" />
     <Compile Include="API\Models\Abstract\IResultFactory.cs" />
     <Compile Include="API\Models\Abstract\ResultFactory.cs" />
+    <Compile Include="API\Models\Members\LoginModels.cs" />
     <Compile Include="API\Models\PreMembers\RegPreMemberModels.cs" />
     <Compile Include="API\Models\PreMembers\ResendVerifyCodeModels.cs" />
     <Compile Include="API\Models\PreMembers\VerifyPreMemberModels.cs" />

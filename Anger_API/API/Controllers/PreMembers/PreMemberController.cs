@@ -9,6 +9,7 @@ using Anger_API.API.Models.PreMembers;
 
 using Anger_API.Database.Members;
 using Anger_API.Database.PreMembers;
+using static Anger_API.Database.Members.Member;
 
 namespace Anger_API.API.Controllers.PreMembers
 {
@@ -38,7 +39,7 @@ namespace Anger_API.API.Controllers.PreMembers
                 Mobile = model.Mobile,
                 Name = model.Name,
                 Password = model.Password,
-                Status = PreMemberStatus.Active
+                Status = (int)PreMemberStatus.Active
             };
             APIReturnCode apiReturnCode = MemberRepo.VerifyNewMember(preMember);
             if (apiReturnCode == APIReturnCode.Success)
@@ -70,7 +71,15 @@ namespace Anger_API.API.Controllers.PreMembers
             await PreMemberRepo.Verified(preMemberID, preMember);
 
             // Reg As Member
-            Member member = new Member(preMember);
+            Member member = new Member()
+            {
+                Name = preMember.Name,
+                Mobile = preMember.Mobile,
+                Email = preMember.Email,
+                Account = preMember.Account,
+                Password = preMember.Password,
+                Status = (MemberStatus)preMember.Status
+            };
             await MemberRepo.CreateAsync(member);
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success);
         }

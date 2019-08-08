@@ -6,12 +6,40 @@ using SqlKata.Compilers;
 using Anger_API.Database.PreMembers;
 using Anger_API.API.Models.Abstract;
 using static Anger_API.Database.AngerDB;
+using System.Threading.Tasks;
+
+using Anger_API.API.Models.Members;
 
 namespace Anger_API.Database.Members
 {
     public class MemberRepository : Repository, IMemberRepository
     {
         public override string TableName => "Anger_Member";
+        public async Task<Member> RetrieveByAC(string account)
+        {
+            DBManager.OpenConnection();
+            var compiler = new SqlServerCompiler();
+            var db = new QueryFactory(DBManager.Conn, compiler);
+            var objs = await db.Query(TableName)
+                .Where(nameof(Member.Account), account)
+                .GetAsync<Member>();
+            DBManager.CloseConnection();
+            return objs.FirstOrDefault();
+        }
+
+        public async Task<long?> RetrieveIDByAcPw(string account, string password)
+        {
+            DBManager.OpenConnection();
+            var compiler = new SqlServerCompiler();
+            var db = new QueryFactory(DBManager.Conn, compiler);
+            long? id = await db.Query(TableName)
+                .Select("ID")
+                .Where(nameof(Member.Account), account)
+                .Where(nameof(Member.Password), password)
+                .FirstOrDefaultAsync<long?>();
+            DBManager.CloseConnection();
+            return id;
+        }
         public APIReturnCode VerifyNewMember(PreMember preMember)
         {
             DBManager.OpenConnection();
@@ -36,6 +64,7 @@ namespace Anger_API.Database.Members
                 .Count() > 0;
             if (accountExist) return APIReturnCode.AccountExist;
 
+            DBManager.CloseConnection();
             return APIReturnCode.Success;
         }
     }
