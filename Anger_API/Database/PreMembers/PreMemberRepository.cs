@@ -24,8 +24,9 @@ namespace Anger_API.Database.PreMembers
             string verifyCode = random.Next(100000, 999999).ToString();
             preMember.VerifyCode = verifyCode;
             preMember.Verified = false;
-            await MailService.SendVerifyEmail(verifyCode, preMember.Name, preMember.Email);
+
             string preMemberID = await base.CreateAsync(preMember);
+            await MailService.SendVerifyEmail(verifyCode, preMember.Name, preMember.Email);
             return preMemberID;
         }
         public async Task ResendVerifyCode(long preMemberID, PreMember preMember)
