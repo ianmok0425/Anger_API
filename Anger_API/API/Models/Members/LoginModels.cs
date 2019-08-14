@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 
 using Anger_Library;
+using Anger_API.Database.Members;
 
 namespace Anger_API.API.Models.Members
 {
@@ -20,5 +21,6 @@ namespace Anger_API.API.Models.Members
     public class LoginResponse : ResponseBase
     {
         public string MemberID { get; set; }
+        public Member Member { get; set; }
     }
 }

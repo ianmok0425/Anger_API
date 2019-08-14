@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 using SqlKata.Execution;
 using SqlKata.Compilers;
@@ -27,7 +28,7 @@ namespace Anger_API.Database.Members
             return objs.FirstOrDefault();
         }
 
-        public async Task<long?> RetrieveIDByAcPw(string account, string password)
+        public async Task<Tuple<long?, Member>> RetrieveMemberAndIDByAcPw(string account, string password)
         {
             DBManager.OpenConnection();
             var compiler = new SqlServerCompiler();
@@ -37,8 +38,23 @@ namespace Anger_API.Database.Members
                 .Where(nameof(Member.Account), account)
                 .Where(nameof(Member.Password), password)
                 .FirstOrDefaultAsync<long?>();
-            DBManager.CloseConnection();
-            return id;
+
+            if(id == null)
+            {
+                DBManager.CloseConnection();
+                return null;
+            }
+            else
+            {
+                var objs = await db.Query(TableName)
+               .Where(nameof(Member.Account), account)
+               .Where(nameof(Member.Password), password)
+               .GetAsync<Member>();
+                Member member = objs.FirstOrDefault();
+                DBManager.CloseConnection(); 
+                return new Tuple<long?, Member>(id, member);
+            }
+
         }
         public APIReturnCode VerifyNewMember(PreMember preMember)
         {

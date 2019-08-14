@@ -34,11 +34,11 @@ namespace Anger_API.API.Controllers.Members
             if(member == null)
                 return ResultFactory.CreateResult(ReturnCode.Error500, APIReturnCode.InvalidAccount);
 
-            long? memberID = await MemberRepo.RetrieveIDByAcPw(model.Account, model.Password);
-            if(memberID == null)
+            var tuple = await MemberRepo.RetrieveMemberAndIDByAcPw(model.Account, model.Password);
+            if(tuple == null)
                 return ResultFactory.CreateResult(ReturnCode.Error500, APIReturnCode.InvalidPassword);
 
-            var rsp = new LoginResponse() { MemberID = memberID.ToString() };
+            var rsp = new LoginResponse() { MemberID = tuple.Item1.ToString(), Member = tuple.Item2 };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 using Anger_API.API.Models.Abstract;
 using Anger_API.API.Models.Members;
@@ -9,7 +10,7 @@ namespace Anger_API.Database.Members
     public interface IMemberRepository : IRepository
     {
         APIReturnCode VerifyNewMember(PreMember preMember);
-        Task<long?> RetrieveIDByAcPw(string account, string password);
+        Task<Tuple<long?, Member>> RetrieveMemberAndIDByAcPw(string account, string password);
         Task<Member> RetrieveByAC(string account);
     }
 }
