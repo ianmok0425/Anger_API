@@ -1,8 +1,10 @@
-﻿using Anger_Library;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+
+using Anger_API.Database.Members;
+using Anger_Library;
 
 namespace Anger_API.API.Models.PreMembers
 {
@@ -18,5 +20,7 @@ namespace Anger_API.API.Models.PreMembers
     }
     public class VerifyPreMemberReponse : ResponseBase
     {
+        public string MemberID { get; set; }
+        public Member Member { get; set; }
     }
 }
