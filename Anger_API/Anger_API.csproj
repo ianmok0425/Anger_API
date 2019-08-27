@@ -143,6 +143,7 @@
     <Compile Include="API\Controllers\Abstract\BaseApiController.cs" />
     <Compile Include="API\Controllers\Members\MemberController.cs" />
     <Compile Include="API\Controllers\PreMembers\PreMemberController.cs" />
+    <Compile Include="API\Controllers\RunningTexts\RunningTextController.cs" />
     <Compile Include="API\Controllers\Tests\TestController.cs" />
     <Compile Include="API\Filters\ApiKeyAuthorizeFilter.cs" />
     <Compile Include="API\Models\Abstract\APIModel.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="API\Models\PreMembers\RegPreMemberModels.cs" />
     <Compile Include="API\Models\PreMembers\ResendVerifyCodeModels.cs" />
     <Compile Include="API\Models\PreMembers\VerifyPreMemberModels.cs" />
+    <Compile Include="API\Models\RunningTexts\UploadRunningTextModels.cs" />
     <Compile Include="API\Models\Tests\TestModels.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DIResolver.cs" />
@@ -200,6 +202,9 @@
     <Compile Include="Database\PreMembers\PreMember.cs" />
     <Compile Include="Database\PreMembers\PreMemberRepository.cs" />
     <Compile Include="Database\Repository.cs" />
+    <Compile Include="Database\RunningTexts\IRunningTextRepository.cs" />
+    <Compile Include="Database\RunningTexts\RunningText.cs" />
+    <Compile Include="Database\RunningTexts\RunningTextRepository.cs" />
     <Compile Include="Database\Tests\ITestRepository.cs" />
     <Compile Include="Database\Tests\Test.cs" />
     <Compile Include="Database\Tests\TestRepository.cs" />

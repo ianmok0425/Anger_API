@@ -97,6 +97,11 @@ namespace Anger_API.API.Models.Abstract
                     MessageTC = "密碼錯誤";
                     MessageSC = "密码错误";
                     break;
+                case APIReturnCode.MemberNotExist:
+                    Message = "Member Not Exist";
+                    MessageTC = "會員不存在";
+                    MessageSC = "会员不存在";
+                    break;
             }
         }
     }
@@ -133,6 +138,7 @@ namespace Anger_API.API.Models.Abstract
 
         // Member
         InvalidAccount = 7,
-        InvalidPassword = 8
+        InvalidPassword = 8,
+        MemberNotExist = 9
     }
 }
