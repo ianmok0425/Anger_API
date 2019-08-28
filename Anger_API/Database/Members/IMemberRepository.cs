@@ -10,7 +10,7 @@ namespace Anger_API.Database.Members
     public interface IMemberRepository : IRepository
     {
         APIReturnCode VerifyNewMember(PreMember preMember);
-        Task<Tuple<long?, Member>> RetrieveMemberAndIDByAcPw(string account, string password);
+        Task<Member> RetrieveMemberByAcPw(string account, string password);
         Task<Member> RetrieveByAC(string account);
     }
 }

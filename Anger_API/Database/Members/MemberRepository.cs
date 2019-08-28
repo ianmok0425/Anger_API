@@ -28,33 +28,19 @@ namespace Anger_API.Database.Members
             return objs.FirstOrDefault();
         }
 
-        public async Task<Tuple<long?, Member>> RetrieveMemberAndIDByAcPw(string account, string password)
+        public async Task<Member> RetrieveMemberByAcPw(string account, string password)
         {
             DBManager.OpenConnection();
             var compiler = new SqlServerCompiler();
             var db = new QueryFactory(DBManager.Conn, compiler);
-            long? id = await db.Query(TableName)
-                .Select("ID")
-                .Where(nameof(Member.Account), account)
-                .Where(nameof(Member.Password), password)
-                .FirstOrDefaultAsync<long?>();
 
-            if(id == null)
-            {
-                DBManager.CloseConnection();
-                return null;
-            }
-            else
-            {
-                var objs = await db.Query(TableName)
-               .Where(nameof(Member.Account), account)
-               .Where(nameof(Member.Password), password)
-               .GetAsync<Member>();
-                Member member = objs.FirstOrDefault();
-                DBManager.CloseConnection(); 
-                return new Tuple<long?, Member>(id, member);
-            }
+            var objs = await db.Query(TableName)
+                        .Where(nameof(Member.Account), account)
+                        .Where(nameof(Member.Password), password)
+                        .GetAsync<Member>();
 
+            DBManager.CloseConnection(); 
+            return objs.FirstOrDefault();
         }
         public APIReturnCode VerifyNewMember(PreMember preMember)
         {

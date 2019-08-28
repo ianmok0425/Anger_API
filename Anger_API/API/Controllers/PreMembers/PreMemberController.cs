@@ -81,8 +81,8 @@ namespace Anger_API.API.Controllers.PreMembers
                 Status = (MemberStatus)preMember.Status
             };
             await MemberRepo.CreateAsync(member);
-            var tuple = await MemberRepo.RetrieveMemberAndIDByAcPw(member.Account, member.Password);
-            var rsp = new VerifyPreMemberReponse() { MemberID = tuple.Item1.ToString(), Member = tuple.Item2 };
+            var m = await MemberRepo.RetrieveMemberByAcPw(member.Account, member.Password);
+            var rsp = new VerifyPreMemberReponse() { Member = m };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
         }
 

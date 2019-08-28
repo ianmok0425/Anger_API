@@ -20,7 +20,6 @@ namespace Anger_API.API.Models.Members
     }
     public class LoginResponse : ResponseBase
     {
-        public string MemberID { get; set; }
         public Member Member { get; set; }
     }
 }
