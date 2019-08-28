@@ -8,8 +8,6 @@ using Anger_API.API.Models.Abstract;
 using Anger_API.API.Models.Members;
 using Anger_API.Database.Members;
 
-using Anger_API.Database.Members;
-
 namespace Anger_API.API.Controllers.Members
 {
     [ApiKeyAuthorize]
