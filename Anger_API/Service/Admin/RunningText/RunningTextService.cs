@@ -57,9 +57,9 @@ namespace Anger_API.Service.Admin.RunningText
             worksheet.Cells[rn, 6].Value = rt.ApprovedAt;
             worksheet.Cells[rn, 7].Value = rt.Rejected;
             worksheet.Cells[rn, 8].Value = rt.RejectedAt;
-            worksheet.Cells[rn, 9].Value = rt.RejectReasonID;
-            worksheet.Cells[rn, 10].Value = rt.UpdatedAt.HasValue ? rt.UpdatedAt.Value.AddHours(8).ToString() : null;
-            worksheet.Cells[rn, 11].Value = rt.CreatedAt.AddHours(8).ToString();
+            worksheet.Cells[rn, 9].Value = rt.RejectReason;
+            worksheet.Cells[rn, 10].Value = rt.UpdatedAt.HasValue ? rt.UpdatedAt.Value.ToString() : null;
+            worksheet.Cells[rn, 11].Value = rt.CreatedAt.ToString();
             return worksheet;
         }
         private ExcelWorksheet ConstructHeader(ExcelWorksheet worksheet)
@@ -72,7 +72,7 @@ namespace Anger_API.Service.Admin.RunningText
             worksheet.Cells[1, 6].Value = nameof(RunningText.ApprovedAt);
             worksheet.Cells[1, 7].Value = nameof(RunningText.Rejected);
             worksheet.Cells[1, 8].Value = nameof(RunningText.RejectedAt);
-            worksheet.Cells[1, 9].Value = nameof(RunningText.RejectReasonID);
+            worksheet.Cells[1, 9].Value = nameof(RunningText.RejectReason);
             worksheet.Cells[1, 10].Value = nameof(RunningText.UpdatedAt);
             worksheet.Cells[1, 11].Value = nameof(RunningText.CreatedAt);
             worksheet.Row(1).Style.Font.Bold = true;

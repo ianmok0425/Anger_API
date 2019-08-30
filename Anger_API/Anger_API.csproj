@@ -203,6 +203,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Database\Admins\Admin.cs" />
+    <Compile Include="Database\Admins\AdminRepository.cs" />
+    <Compile Include="Database\Admins\IAdminRepository.cs" />
     <Compile Include="Database\AngerDB.cs" />
     <Compile Include="Database\BaseTable.cs" />
     <Compile Include="Database\IRepository.cs" />
