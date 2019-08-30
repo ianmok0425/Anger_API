@@ -13,16 +13,20 @@ using Anger_API.API.Models.Abstract;
 using Anger_API.API.Models.Admins;
 
 using Anger_API.Service.Admin.RunningText;
+using Anger_API.Database.Admins;
 
 namespace Anger_API.API.Controllers.Admin
 {
     public class AdminController : AngerApiController
     {
+        public IAdminRepository AdminRepo { get; }
         public IRunningTextService RunningTextService { get; }
         public AdminController(
+            IAdminRepository adminRepo,
             IRunningTextService runningTextService,
             IResultFactory<AngerResult> resultFactory) : base(resultFactory)
         {
+            AdminRepo = adminRepo ?? throw new ArgumentNullException(nameof(AdminRepo));
             RunningTextService = runningTextService ?? throw new ArgumentNullException(nameof(RunningTextService));
         }
         [HttpGet]
@@ -31,6 +35,9 @@ namespace Anger_API.API.Controllers.Admin
         {
             if (model == null) throw new NullReferenceException();
             model.Validate();
+
+            bool verifyAdmin = await AdminRepo.VerfiyAdmin(model.Account, model.Password);
+            if (!verifyAdmin) throw new Exception("Admin Account or Password incorrect.");
 
             DateTime? createdOn = string.IsNullOrWhiteSpace(model.CreatedOn) ? null : (DateTime?)DateTime.Parse(model.CreatedOn);
 
