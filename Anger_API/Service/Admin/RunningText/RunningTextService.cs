@@ -13,6 +13,7 @@ namespace Anger_API.Service.Admin.RunningText
     using Database.RunningTexts;
     public class RunningTextService : IRunningTextService
     {
+        private string[] CharArray = new string[] { "A", "B", "C", "D", "E", "F", "G", "H" };
         public IRunningTextRepository RunningTextRepo { get; }
         public RunningTextService(IRunningTextRepository runningTextRepo)
         {
@@ -53,6 +54,7 @@ namespace Anger_API.Service.Admin.RunningText
             worksheet.Cells[rn, 2].Value = rt.Content;
             worksheet.Cells[rn, 3].Value = rt.MemberID;
             worksheet.Cells[rn, 4].Value = rt.PostAt;
+            SetBoolean(rn, 5, rt.Approved, ref worksheet);
             worksheet.Cells[rn, 5].Value = rt.Approved;
             worksheet.Cells[rn, 6].Value = rt.ApprovedAt;
             worksheet.Cells[rn, 7].Value = rt.Rejected;
@@ -82,6 +84,15 @@ namespace Anger_API.Service.Admin.RunningText
         {
             excel.Workbook.Properties.Author = "HSPM CRM";
             excel.Workbook.Properties.Title = title;
+        }
+        private void SetBoolean(int rowNo, int colNo, bool? value, ref ExcelWorksheet ws)
+        {
+            ws.Cells[rowNo, colNo].Value = value;
+            var booleanValidation = ws.DataValidations.AddListValidation($"{CharArray[colNo - 1]}{rowNo}");
+            booleanValidation.Formula.Values.Add("true");
+            booleanValidation.Formula.Values.Add("false");
+            booleanValidation.AllowBlank = true;
+            booleanValidation.ShowErrorMessage = true;
         }
     }
 }
