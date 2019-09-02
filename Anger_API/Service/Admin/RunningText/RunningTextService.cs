@@ -19,7 +19,7 @@ namespace Anger_API.Service.Admin.RunningText
         {
             RunningTextRepo = runningTextRepo ?? throw new ArgumentNullException(nameof(RunningTextRepo));
         }
-        public async Task<ExcelPackage> GenerateList(ActionType actionType, DateTime? createdOn)
+        public async Task<ExcelPackage> GenerateList(ActionType actionType, DateTime? createdAt)
         {
             ExcelPackage excel = new ExcelPackage();
             string fileName = "Running Text List";
@@ -28,10 +28,13 @@ namespace Anger_API.Service.Admin.RunningText
             switch (actionType)
             {
                 case ActionType.All:
-                    rts = await RunningTextRepo.RetrieveAll(createdOn);
+                    rts = await RunningTextRepo.RetrieveAll(createdAt);
                     break;
                 case ActionType.Approved:
-                    rts = await RunningTextRepo.RetrieveApprovedList(createdOn);
+                    rts = await RunningTextRepo.RetrieveApprovedList(createdAt);
+                    break;
+                case ActionType.NotApproved:
+                    rts = await RunningTextRepo.RetrieveNotApprovedList(createdAt);
                     break;
             }
             ExcelWorksheet worksheet = CreateWorkSheet(excel, "List", rts);

@@ -40,5 +40,20 @@ namespace Anger_API.Database.RunningTexts
             DBManager.CloseConnection();
             return objs.ToList();
         }
+        public async Task<List<RunningText>> RetrieveNotApprovedList(DateTime? createdAt)
+        {
+            DBManager.OpenConnection();
+            var compiler = new SqlServerCompiler();
+            var db = new QueryFactory(DBManager.Conn, compiler);
+
+            var query = db.Query(TableName)
+                            .Where(nameof(RunningText.Approved), false)
+                            .OrWhere(nameof(RunningText.Approved), null);
+            if (createdAt != null) query = query.WhereDate(nameof(RunningText.CreatedAt), createdAt.Value.ToString("yyyy-MM-dd"));
+
+            var objs = await query.GetAsync<RunningText>();
+            DBManager.CloseConnection();
+            return objs.ToList();
+        }
     }
 }
