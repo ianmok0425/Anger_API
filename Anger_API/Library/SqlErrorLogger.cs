@@ -33,9 +33,9 @@ namespace Anger_API.Library
                 }
                 DBManager.CloseConnection();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
     }
