@@ -68,12 +68,11 @@ namespace Anger_API.Service.Admin.RunningText
             worksheet.Cells[rn, 4].Value = rt.PostAt.HasValue ? rt.PostAt.Value.ToHKTime().ToString() : null;
             SetBoolean(rn, 5, rt.Approved, ref worksheet);
             worksheet.Cells[rn, 6].Value = rt.ApprovedAt.HasValue ? rt.ApprovedAt.Value.ToHKTime().ToString() : null;
-            SetBoolean(rn, 7, rt.Rejected, ref worksheet);
-            worksheet.Cells[rn, 8].Value = rt.RejectedAt.HasValue ? rt.RejectedAt.Value.ToHKTime().ToString() : null;
-            worksheet.Cells[rn, 9].Value = rt.RejectReason;
-            SetBoolean(rn, 10, rt.EmailNotice, ref worksheet);
-            worksheet.Cells[rn, 11].Value = rt.UpdatedAt.HasValue ? rt.UpdatedAt.Value.ToHKTime().ToString() : null;
-            worksheet.Cells[rn, 12].Value = rt.CreatedAt.ToHKTime().ToString();
+            worksheet.Cells[rn, 7].Value = rt.RejectedAt.HasValue ? rt.RejectedAt.Value.ToHKTime().ToString() : null;
+            worksheet.Cells[rn, 8].Value = rt.RejectReason;
+            SetBoolean(rn, 9, rt.EmailNotice, ref worksheet);
+            worksheet.Cells[rn, 10].Value = rt.UpdatedAt.HasValue ? rt.UpdatedAt.Value.ToHKTime().ToString() : null;
+            worksheet.Cells[rn, 11].Value = rt.CreatedAt.ToHKTime().ToString();
             return worksheet;
         }
         private ExcelWorksheet ConstructHeader(ExcelWorksheet worksheet)
@@ -84,12 +83,11 @@ namespace Anger_API.Service.Admin.RunningText
             worksheet.Cells[1, 4].Value = nameof(RunningText.PostAt);
             worksheet.Cells[1, 5].Value = nameof(RunningText.Approved);
             worksheet.Cells[1, 6].Value = nameof(RunningText.ApprovedAt);
-            worksheet.Cells[1, 7].Value = nameof(RunningText.Rejected);
-            worksheet.Cells[1, 8].Value = nameof(RunningText.RejectedAt);
-            worksheet.Cells[1, 9].Value = nameof(RunningText.RejectReason);
-            worksheet.Cells[1, 10].Value = nameof(RunningText.EmailNotice);
-            worksheet.Cells[1, 11].Value = nameof(RunningText.UpdatedAt);
-            worksheet.Cells[1, 12].Value = nameof(RunningText.CreatedAt);
+            worksheet.Cells[1, 7].Value = nameof(RunningText.RejectedAt);
+            worksheet.Cells[1, 8].Value = nameof(RunningText.RejectReason);
+            worksheet.Cells[1, 9].Value = nameof(RunningText.EmailNotice);
+            worksheet.Cells[1, 10].Value = nameof(RunningText.UpdatedAt);
+            worksheet.Cells[1, 11].Value = nameof(RunningText.CreatedAt);
             worksheet.Row(1).Style.Font.Bold = true;
             return worksheet;
         }
