@@ -12,7 +12,7 @@ namespace Anger_API.API.Models.Admins
         public int Action { get; set; }
         public string Account { get; set; }
         public string Password { get; set; }
-        public string CreatedOn { get; set; }
+        public string CreatedAt { get; set; }
         public ActionType ActionType;
         public override void Validate()
         {

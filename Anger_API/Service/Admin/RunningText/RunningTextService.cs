@@ -30,6 +30,9 @@ namespace Anger_API.Service.Admin.RunningText
                 case ActionType.All:
                     rts = await RunningTextRepo.RetrieveAll(createdOn);
                     break;
+                case ActionType.Approved:
+                    rts = await RunningTextRepo.RetrieveApprovedList(createdOn);
+                    break;
             }
             ExcelWorksheet worksheet = CreateWorkSheet(excel, "List", rts);
             return excel;

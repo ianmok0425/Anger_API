@@ -39,9 +39,9 @@ namespace Anger_API.API.Controllers.Admin
             bool verifyAdmin = await AdminRepo.VerfiyAdmin(model.Account, model.Password);
             if (!verifyAdmin) throw new Exception("Admin Account or Password incorrect.");
 
-            DateTime? createdOn = string.IsNullOrWhiteSpace(model.CreatedOn) ? null : (DateTime?)DateTime.Parse(model.CreatedOn);
+            DateTime? createdAt = string.IsNullOrWhiteSpace(model.CreatedAt) ? null : (DateTime?)DateTime.Parse(model.CreatedAt);
 
-            ExcelPackage excel = await RunningTextService.GenerateList(model.ActionType, createdOn);
+            ExcelPackage excel = await RunningTextService.GenerateList(model.ActionType, createdAt);
 
             string today = DateTime.Now.ToString("yyyyMMdd");
 

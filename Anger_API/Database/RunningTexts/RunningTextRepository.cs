@@ -14,14 +14,27 @@ namespace Anger_API.Database.RunningTexts
     public class RunningTextRepository : Repository, IRunningTextRepository
     {
         public override string TableName => "Anger_RunningText";
-        public async Task<List<RunningText>> RetrieveAll(DateTime? createdOn)
+        public async Task<List<RunningText>> RetrieveAll(DateTime? createdAt)
         {
             DBManager.OpenConnection();
             var compiler = new SqlServerCompiler();
             var db = new QueryFactory(DBManager.Conn, compiler);
 
             var query = db.Query(TableName);
-            if (createdOn != null) query = query.WhereDate(nameof(RunningText.CreatedAt), createdOn.Value.ToString("yyyy-MM-dd"));
+            if (createdAt != null) query = query.WhereDate(nameof(RunningText.CreatedAt), createdAt.Value.ToString("yyyy-MM-dd"));
+
+            var objs = await query.GetAsync<RunningText>();
+            DBManager.CloseConnection();
+            return objs.ToList();
+        }
+        public async Task<List<RunningText>> RetrieveApprovedList(DateTime? createdAt)
+        {
+            DBManager.OpenConnection();
+            var compiler = new SqlServerCompiler();
+            var db = new QueryFactory(DBManager.Conn, compiler);
+
+            var query = db.Query(TableName).Where(nameof(RunningText.Approved), true);
+            if (createdAt != null) query = query.WhereDate(nameof(RunningText.CreatedAt), createdAt.Value.ToString("yyyy-MM-dd"));
 
             var objs = await query.GetAsync<RunningText>();
             DBManager.CloseConnection();

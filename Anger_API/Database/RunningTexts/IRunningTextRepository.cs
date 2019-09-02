@@ -6,6 +6,7 @@ namespace Anger_API.Database.RunningTexts
 {
     public interface IRunningTextRepository : IRepository
     {
-        Task<List<RunningText>> RetrieveAll(DateTime? createdOn);
+        Task<List<RunningText>> RetrieveAll(DateTime? createdAt);
+        Task<List<RunningText>> RetrieveApprovedList(DateTime? createdAt);
     }
 }
