@@ -237,6 +237,7 @@
     <Compile Include="Library\SqlErrorLogger.cs" />
     <Compile Include="Library\SqlRequestLogger.cs" />
     <Compile Include="Library\UnhandledExceptionLogger.cs" />
+    <Compile Include="Library\Utility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Admin\RunningText\IRunningTextService.cs" />
     <Compile Include="Service\Admin\RunningText\RunningTextService.cs" />

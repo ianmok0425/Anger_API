@@ -7,6 +7,8 @@ using System.Web;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 
+using Anger_API.Library;
+
 
 namespace Anger_API.Service.Admin.RunningText
 {
@@ -53,15 +55,14 @@ namespace Anger_API.Service.Admin.RunningText
             worksheet.Cells[rn, 1].Value = rt.ID;
             worksheet.Cells[rn, 2].Value = rt.Content;
             worksheet.Cells[rn, 3].Value = rt.MemberID;
-            worksheet.Cells[rn, 4].Value = rt.PostAt;
+            worksheet.Cells[rn, 4].Value = rt.PostAt.HasValue ? rt.PostAt.Value.ToHKTime().ToString() : null;
             SetBoolean(rn, 5, rt.Approved, ref worksheet);
-            worksheet.Cells[rn, 5].Value = rt.Approved;
-            worksheet.Cells[rn, 6].Value = rt.ApprovedAt;
-            worksheet.Cells[rn, 7].Value = rt.Rejected;
-            worksheet.Cells[rn, 8].Value = rt.RejectedAt;
+            worksheet.Cells[rn, 6].Value = rt.ApprovedAt.HasValue ? rt.ApprovedAt.Value.ToHKTime().ToString() : null;
+            SetBoolean(rn, 7, rt.Rejected, ref worksheet);
+            worksheet.Cells[rn, 8].Value = rt.RejectedAt.HasValue ? rt.RejectedAt.Value.ToHKTime().ToString() : null;
             worksheet.Cells[rn, 9].Value = rt.RejectReason;
-            worksheet.Cells[rn, 10].Value = rt.UpdatedAt.HasValue ? rt.UpdatedAt.Value.ToString() : null;
-            worksheet.Cells[rn, 11].Value = rt.CreatedAt.ToString();
+            worksheet.Cells[rn, 10].Value = rt.UpdatedAt.HasValue ? rt.UpdatedAt.Value.ToHKTime().ToString() : null;
+            worksheet.Cells[rn, 11].Value = rt.CreatedAt.ToHKTime().ToString();
             return worksheet;
         }
         private ExcelWorksheet ConstructHeader(ExcelWorksheet worksheet)
