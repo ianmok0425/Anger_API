@@ -14,13 +14,16 @@ namespace Anger_API.Database.RunningTexts
     public class RunningTextRepository : Repository, IRunningTextRepository
     {
         public override string TableName => "Anger_RunningText";
-        public async Task<List<RunningText>> RetrieveAll()
+        public async Task<List<RunningText>> RetrieveAll(DateTime? createdOn)
         {
             DBManager.OpenConnection();
             var compiler = new SqlServerCompiler();
             var db = new QueryFactory(DBManager.Conn, compiler);
-            var objs = await db.Query(TableName)
-                .GetAsync<RunningText>();
+
+            var query = db.Query(TableName);
+            if (createdOn != null) query = query.WhereDate(nameof(RunningText.CreatedAt), createdOn.Value.ToString("yyyy-MM-dd"));
+
+            var objs = await query.GetAsync<RunningText>();
             DBManager.CloseConnection();
             return objs.ToList();
         }

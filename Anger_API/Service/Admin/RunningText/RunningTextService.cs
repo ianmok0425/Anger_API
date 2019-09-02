@@ -1,32 +1,36 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 
 using Anger_API.Library;
-
+using Anger_API.API.Models.Admins;
 
 namespace Anger_API.Service.Admin.RunningText
 {
     using Database.RunningTexts;
     public class RunningTextService : IRunningTextService
     {
-        private string[] CharArray = new string[] { "A", "B", "C", "D", "E", "F", "G", "H" };
+        private string[] CharArray = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I" };
         public IRunningTextRepository RunningTextRepo { get; }
         public RunningTextService(IRunningTextRepository runningTextRepo)
         {
             RunningTextRepo = runningTextRepo ?? throw new ArgumentNullException(nameof(RunningTextRepo));
         }
-        public async Task<ExcelPackage> GenerateList(DateTime? createdOn)
+        public async Task<ExcelPackage> GenerateList(ActionType actionType, DateTime? createdOn)
         {
             ExcelPackage excel = new ExcelPackage();
             string fileName = "Running Text List";
             SetExcelProperties(excel, fileName);
-            List<RunningText> rts = await RunningTextRepo.RetrieveAll();
+            List<RunningText> rts = new List<RunningText>();
+            switch (actionType)
+            {
+                case ActionType.All:
+                    rts = await RunningTextRepo.RetrieveAll(createdOn);
+                    break;
+            }
             ExcelWorksheet worksheet = CreateWorkSheet(excel, "List", rts);
             return excel;
         }

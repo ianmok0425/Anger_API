@@ -6,6 +6,6 @@ namespace Anger_API.Database.RunningTexts
 {
     public interface IRunningTextRepository : IRepository
     {
-        Task<List<RunningText>> RetrieveAll();
+        Task<List<RunningText>> RetrieveAll(DateTime? createdOn);
     }
 }

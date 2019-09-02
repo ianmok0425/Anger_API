@@ -41,7 +41,7 @@ namespace Anger_API.API.Controllers.Admin
 
             DateTime? createdOn = string.IsNullOrWhiteSpace(model.CreatedOn) ? null : (DateTime?)DateTime.Parse(model.CreatedOn);
 
-            ExcelPackage excel = await RunningTextService.GenerateList(createdOn);
+            ExcelPackage excel = await RunningTextService.GenerateList(model.ActionType, createdOn);
 
             string today = DateTime.Now.ToString("yyyyMMdd");
 
