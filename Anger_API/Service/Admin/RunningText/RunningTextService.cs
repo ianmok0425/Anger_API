@@ -13,7 +13,7 @@ namespace Anger_API.Service.Admin.RunningText
     using Database.RunningTexts;
     public class RunningTextService : IRunningTextService
     {
-        private string[] CharArray = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I" };
+        private string[] CharArray = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K" };
         public IRunningTextRepository RunningTextRepo { get; }
         public RunningTextService(IRunningTextRepository runningTextRepo)
         {
@@ -71,8 +71,9 @@ namespace Anger_API.Service.Admin.RunningText
             SetBoolean(rn, 7, rt.Rejected, ref worksheet);
             worksheet.Cells[rn, 8].Value = rt.RejectedAt.HasValue ? rt.RejectedAt.Value.ToHKTime().ToString() : null;
             worksheet.Cells[rn, 9].Value = rt.RejectReason;
-            worksheet.Cells[rn, 10].Value = rt.UpdatedAt.HasValue ? rt.UpdatedAt.Value.ToHKTime().ToString() : null;
-            worksheet.Cells[rn, 11].Value = rt.CreatedAt.ToHKTime().ToString();
+            SetBoolean(rn, 10, rt.EmailNotice, ref worksheet);
+            worksheet.Cells[rn, 11].Value = rt.UpdatedAt.HasValue ? rt.UpdatedAt.Value.ToHKTime().ToString() : null;
+            worksheet.Cells[rn, 12].Value = rt.CreatedAt.ToHKTime().ToString();
             return worksheet;
         }
         private ExcelWorksheet ConstructHeader(ExcelWorksheet worksheet)
@@ -86,8 +87,9 @@ namespace Anger_API.Service.Admin.RunningText
             worksheet.Cells[1, 7].Value = nameof(RunningText.Rejected);
             worksheet.Cells[1, 8].Value = nameof(RunningText.RejectedAt);
             worksheet.Cells[1, 9].Value = nameof(RunningText.RejectReason);
-            worksheet.Cells[1, 10].Value = nameof(RunningText.UpdatedAt);
-            worksheet.Cells[1, 11].Value = nameof(RunningText.CreatedAt);
+            worksheet.Cells[1, 10].Value = nameof(RunningText.EmailNotice);
+            worksheet.Cells[1, 11].Value = nameof(RunningText.UpdatedAt);
+            worksheet.Cells[1, 12].Value = nameof(RunningText.CreatedAt);
             worksheet.Row(1).Style.Font.Bold = true;
             return worksheet;
         }

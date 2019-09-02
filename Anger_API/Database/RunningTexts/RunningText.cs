@@ -12,6 +12,7 @@ namespace Anger_API.Database.RunningTexts
         public DateTime? ApprovedAt { get; set; }
         public bool? Rejected { get; set; }
         public DateTime? RejectedAt { get; set; }
+        public bool? EmailNotice { get; set; }
         public string RejectReason { get; set; }
         public DateTime? UpdatedAt { get; set; }
     }
