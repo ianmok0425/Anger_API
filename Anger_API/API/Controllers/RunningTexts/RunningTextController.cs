@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -48,6 +49,13 @@ namespace Anger_API.API.Controllers.RunningTexts
                 await RunningTextRepo.CreateAsync(rt);
                 return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success);
             }
+        }
+        [HttpGet]
+        [Route("api/runningText/get")]
+        public async Task<AngerResult> GetRunningText([FromUri] GetRunningTextRequest model)
+        {
+            List<RunningText> rts = await RunningTextRepo.RetrieveTodayList();
+            return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, new GetRunningTextResponse() { RunningTexts = rts });
         }
     }
 }

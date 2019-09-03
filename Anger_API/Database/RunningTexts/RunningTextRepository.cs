@@ -27,6 +27,22 @@ namespace Anger_API.Database.RunningTexts
             DBManager.CloseConnection();
             return objs.ToList();
         }
+        public async Task<List<RunningText>> RetrieveTodayList()
+        {
+            DBManager.OpenConnection();
+            var compiler = new SqlServerCompiler();
+            var db = new QueryFactory(DBManager.Conn, compiler);
+
+            var today = DateTime.UtcNow.ToString("yyyy-MM-dd");
+            var objs = await db.Query(TableName)
+                .Where(nameof(RunningText.Approved), true)
+                .Where(nameof(RunningText.EmailNotice), true)
+                .WhereDate(nameof(RunningText.PostAt), today)
+                .GetAsync<RunningText>();
+            DBManager.CloseConnection();
+            return objs.ToList();
+        }
+
         public async Task<List<RunningText>> RetrieveApprovedList(DateTime? createdAt)
         {
             DBManager.OpenConnection();

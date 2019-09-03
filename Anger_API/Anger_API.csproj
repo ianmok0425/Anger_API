@@ -167,6 +167,7 @@
     <Compile Include="API\Models\PreMembers\RegPreMemberModels.cs" />
     <Compile Include="API\Models\PreMembers\ResendVerifyCodeModels.cs" />
     <Compile Include="API\Models\PreMembers\VerifyPreMemberModels.cs" />
+    <Compile Include="API\Models\RunningTexts\GetRunningTextModels.cs" />
     <Compile Include="API\Models\RunningTexts\UploadRunningTextModels.cs" />
     <Compile Include="API\Models\Tests\TestModels.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
