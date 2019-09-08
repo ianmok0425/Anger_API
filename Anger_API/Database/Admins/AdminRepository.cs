@@ -16,7 +16,7 @@ namespace Anger_API.Database.Admins
     public class AdminRepository : Repository, IAdminRepository
     {
         public override string TableName => "Anger_Admin";
-        public async Task<bool> VerfiyAdmin(string account, string password)
+        public async Task<Admin> GetAdminByAcAndPw(string account, string password)
         {
             DBManager.OpenConnection();
             var compiler = new SqlServerCompiler();
@@ -26,7 +26,7 @@ namespace Anger_API.Database.Admins
                 .Where(nameof(Admin.Password), password)
                 .GetAsync<Admin>();
             DBManager.CloseConnection();
-            return objs.Count() > 0;
+            return objs.FirstOrDefault();
         }
     }
 }

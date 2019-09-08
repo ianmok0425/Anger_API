@@ -4,7 +4,6 @@ namespace Anger_API.Database.Admins
 {
     public class Admin : Table
     {
-        public long ID;
         public string Account { get; set; }
         public string Password { get; set; }
         [EnumDataType(typeof(AdminStatus))]

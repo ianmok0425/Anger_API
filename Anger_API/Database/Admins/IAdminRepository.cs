@@ -4,6 +4,6 @@ namespace Anger_API.Database.Admins
 {
     public interface IAdminRepository : IRepository
     {
-        Task<bool> VerfiyAdmin(string account, string password);
+        Task<Admin> GetAdminByAcAndPw(string account, string password);
     }
 }

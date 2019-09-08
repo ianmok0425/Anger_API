@@ -102,6 +102,11 @@ namespace Anger_API.API.Models.Abstract
                     MessageTC = "會員不存在";
                     MessageSC = "会员不存在";
                     break;
+                case APIReturnCode.AdminNotExist:
+                    Message = "Admin Not Exist";
+                    MessageTC = "管理員不存在";
+                    MessageSC = "管理员不存在";
+                    break;
             }
         }
     }
@@ -139,6 +144,9 @@ namespace Anger_API.API.Models.Abstract
         // Member
         InvalidAccount = 7,
         InvalidPassword = 8,
-        MemberNotExist = 9
+        MemberNotExist = 9,
+
+        // Admin
+        AdminNotExist = 10
     }
 }

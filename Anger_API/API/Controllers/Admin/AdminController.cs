@@ -29,6 +29,23 @@ namespace Anger_API.API.Controllers.Admin
             AdminRepo = adminRepo ?? throw new ArgumentNullException(nameof(AdminRepo));
             RunningTextService = runningTextService ?? throw new ArgumentNullException(nameof(RunningTextService));
         }
+        [HttpPost]
+        [Route("api/admin/login")]
+        public async Task<AngerResult> Login([FromBody] LoginRequest model)
+        {
+            if (model == null) throw new NullReferenceException();
+            model.Validate();
+            var admin = await AdminRepo.GetAdminByAcAndPw(model.Account, model.Password);
+            if(admin == null)
+            {
+                return ResultFactory.CreateResult(ReturnCode.Error500, APIReturnCode.AdminNotExist);
+            }
+            else
+            {
+                var rsp = new LoginResponse() { AdminId = admin.ID };
+                return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
+            }
+        }
         [HttpGet]
         [Route("api/admin/getRunningText")]
         public async Task<HttpResponseMessage> GetRunningText([FromUri] GetRunningTextRequest model)
@@ -36,8 +53,8 @@ namespace Anger_API.API.Controllers.Admin
             if (model == null) throw new NullReferenceException();
             model.Validate();
 
-            bool verifyAdmin = await AdminRepo.VerfiyAdmin(model.Account, model.Password);
-            if (!verifyAdmin) throw new Exception("Admin Account or Password incorrect.");
+            var admin = await AdminRepo.GetAdminByAcAndPw(model.Account, model.Password);
+            if (admin == null) throw new Exception("Admin Account or Password incorrect.");
 
             DateTime? createdAt = string.IsNullOrWhiteSpace(model.CreatedAt) ? null : (DateTime?)DateTime.Parse(model.CreatedAt);
 

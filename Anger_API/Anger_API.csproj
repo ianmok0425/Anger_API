@@ -163,6 +163,7 @@
     <Compile Include="API\Models\Abstract\IResultFactory.cs" />
     <Compile Include="API\Models\Abstract\ResultFactory.cs" />
     <Compile Include="API\Models\Admins\GetRunningTextModels.cs" />
+    <Compile Include="API\Models\Admins\LoginModels.cs" />
     <Compile Include="API\Models\Members\LoginModels.cs" />
     <Compile Include="API\Models\PreMembers\RegPreMemberModels.cs" />
     <Compile Include="API\Models\PreMembers\ResendVerifyCodeModels.cs" />
@@ -216,6 +217,9 @@
     <Compile Include="Database\Members\IMemberRepository.cs" />
     <Compile Include="Database\Members\Member.cs" />
     <Compile Include="Database\Members\MemberRepository.cs" />
+    <Compile Include="Database\Posts\IPostRepository.cs" />
+    <Compile Include="Database\Posts\Post.cs" />
+    <Compile Include="Database\Posts\PostRepository.cs" />
     <Compile Include="Database\PreMembers\IPreMemberRepository.cs" />
     <Compile Include="Database\PreMembers\PreMember.cs" />
     <Compile Include="Database\PreMembers\PreMemberRepository.cs" />
