@@ -21,7 +21,7 @@ namespace Anger_API
             config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
             config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
             // Web API routes
-            config.MapHttpAttributeRoutes();
+            //config.MapHttpAttributeRoutes();
             //Registering GlobalExceptionHandler
             config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
             //Registering UnhandledExceptionLogger
