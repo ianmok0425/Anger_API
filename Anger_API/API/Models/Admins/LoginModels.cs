@@ -18,6 +18,6 @@ namespace Anger_API.API.Models.Admins
     }
     public class LoginResponse : ResponseBase
     {
-        public string AdminId { get; set; }
+        public string AdminID { get; set; }
     }
 }

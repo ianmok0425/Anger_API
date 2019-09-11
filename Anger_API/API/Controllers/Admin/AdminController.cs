@@ -42,7 +42,7 @@ namespace Anger_API.API.Controllers.Admin
             }
             else
             {
-                var rsp = new LoginResponse() { AdminId = admin.ID };
+                var rsp = new LoginResponse() { AdminID = admin.ID };
                 return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
             }
         }
