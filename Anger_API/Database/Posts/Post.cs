@@ -10,6 +10,7 @@ namespace Anger_API.Database.Posts
         public string Content { get; set; }
         public int? ViewCount { get; set; }
         public DateTime? PostAt { get; set; }
+        public string RejectReason { get; set; }
         public long ApprovedBy { get; set; }
         public DateTime? ApprovedAt { get; set; }
         public bool? EmailNotice { get; set; }

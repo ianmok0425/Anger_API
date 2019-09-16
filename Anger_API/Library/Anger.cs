@@ -15,6 +15,8 @@ namespace Anger_API.Library
             public string ApiKey { get; set; }
             public string ConnectionString { get; set; }
             public Mail Mail { get; set; }
+            public string MediaFilePath { get; set; }
+            public string MediaFileUrl { get; set; }
         }
         public class Mail
         {
@@ -50,6 +52,11 @@ namespace Anger_API.Library
                     string.IsNullOrWhiteSpace(c.Mail.Password))
                 {
                     throw new Exception("Missing Mail Information in Config.json.");
+                }
+                if (string.IsNullOrWhiteSpace(c.MediaFilePath) ||
+                    string.IsNullOrWhiteSpace(c.MediaFileUrl))
+                {
+                    throw new Exception("Missing Media File Path or Url in Config.json.");
                 }
             }
             return c;
