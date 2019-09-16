@@ -1,8 +1,10 @@
-﻿using Anger_Library;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+
+using Anger_API.Database.Admins;
+using Anger_Library;
 
 namespace Anger_API.API.Models.Admins
 {
@@ -18,6 +20,6 @@ namespace Anger_API.API.Models.Admins
     }
     public class LoginResponse : ResponseBase
     {
-        public string AdminID { get; set; }
+        public Admin Admin { get; set; }
     }
 }
