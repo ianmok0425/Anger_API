@@ -69,7 +69,7 @@ namespace Anger_API.API.Controllers.Posts
             post.CoverUrl = coverUrl;
             await PostRepo.Update(Convert.ToInt64(postID), post);
 
-            var rsp = new UploadPostResponse() { };
+            var rsp = new UploadPostResponse() { CoverUrl = coverUrl };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
         }
     }

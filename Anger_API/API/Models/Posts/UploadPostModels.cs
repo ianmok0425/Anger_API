@@ -28,5 +28,6 @@ namespace Anger_API.API.Models.Posts
     }
     public class UploadPostResponse : ResponseBase
     {
+        public string CoverUrl { get; set; }
     }
 }
