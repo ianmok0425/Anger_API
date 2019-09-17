@@ -9,6 +9,7 @@ namespace Anger_API.Database.Posts
         public string CoverUrl { get; set; }
         public string Content { get; set; }
         public int? ViewCount { get; set; }
+        public bool? Approved { get; set; }
         public DateTime? PostAt { get; set; }
         public string RejectReason { get; set; }
         public long ApprovedBy { get; set; }

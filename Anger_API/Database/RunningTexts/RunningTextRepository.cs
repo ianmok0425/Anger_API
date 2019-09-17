@@ -33,7 +33,7 @@ namespace Anger_API.Database.RunningTexts
             var compiler = new SqlServerCompiler();
             var db = new QueryFactory(DBManager.Conn, compiler);
 
-            var today = DateTime.UtcNow.ToString("yyyy-MM-dd");
+            var today = DateTime.Now.ToString("yyyy-MM-dd");
             var objs = await db.Query(TableName)
                 .Where(nameof(RunningText.Approved), true)
                 .Where(nameof(RunningText.EmailNotice), true)
