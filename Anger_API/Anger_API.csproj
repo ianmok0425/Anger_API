@@ -154,6 +154,7 @@
     <Compile Include="API\Controllers\Abstract\AngerApiController.cs" />
     <Compile Include="API\Controllers\Abstract\BaseApiController.cs" />
     <Compile Include="API\Controllers\Admin\AdminController.cs" />
+    <Compile Include="API\Controllers\HomePosts\HomePostController.cs" />
     <Compile Include="API\Controllers\Members\MemberController.cs" />
     <Compile Include="API\Controllers\Posts\PostController.cs" />
     <Compile Include="API\Controllers\PreMembers\PreMemberController.cs" />
@@ -166,7 +167,8 @@
     <Compile Include="API\Models\Admins\GetRunningTextModels.cs" />
     <Compile Include="API\Models\Admins\LoginModels.cs" />
     <Compile Include="API\Models\Members\LoginModels.cs" />
-    <Compile Include="API\Models\Posts\GetHomePostModels.cs" />
+    <Compile Include="API\Models\HomePosts\GetHomePostModels.cs" />
+    <Compile Include="API\Models\Posts\GetPostModels.cs" />
     <Compile Include="API\Models\Posts\UploadPostModels.cs" />
     <Compile Include="API\Models\PreMembers\RegPreMemberModels.cs" />
     <Compile Include="API\Models\PreMembers\ResendVerifyCodeModels.cs" />

@@ -11,7 +11,6 @@ using Anger_API.API.Models.Posts;
 using Anger_API.Database.Members;
 using Anger_API.Database.Admins;
 using Anger_API.Database.Posts;
-using Anger_API.Database.Views.HomePost;
 using Anger_API.Service.File;
 
 namespace Anger_API.API.Controllers.Posts
@@ -20,20 +19,17 @@ namespace Anger_API.API.Controllers.Posts
     public class PostController : AngerApiController
     {
         public IFileService FileService { get; }
-        public IHomePostRepository HomePostRepo { get; }
         public IPostRepository PostRepo { get; }
         public IMemberRepository MemberRepo { get; }
         public IAdminRepository AdminRepo { get; }
         public PostController(
             IFileService fileService,
-            IHomePostRepository homePostRepo,
             IPostRepository postRepo,
             IMemberRepository memberRepo,
             IAdminRepository adminRepo,
            IResultFactory<AngerResult> resultFactory) : base(resultFactory)
         {
             FileService = fileService ?? throw new ArgumentNullException(nameof(FileService));
-            HomePostRepo = homePostRepo ?? throw new ArgumentNullException(nameof(HomePostRepo));
             PostRepo = postRepo ?? throw new ArgumentNullException(nameof(PostRepo));
             MemberRepo = memberRepo ?? throw new ArgumentNullException(nameof(MemberRepo));
             AdminRepo = adminRepo ?? throw new ArgumentNullException(nameof(AdminRepo));
@@ -77,15 +73,13 @@ namespace Anger_API.API.Controllers.Posts
             var rsp = new UploadPostResponse() { CoverUrl = coverUrl };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
         }
+        [Route("api/post/get")]
         [HttpGet]
-        [Route("api/post/getHome")]
-        public async Task<AngerResult> RegPreMember([FromUri] GetHomePostRequest model)
+        public async Task<AngerResult> GetPost([FromUri] GetPostRequest model)
         {
             if (model == null) throw new NullReferenceException();
-
-            var homePosts = await HomePostRepo.RetrieveHomePostList(model.StartRowNo, model.EndRowNo);
-
-            var rsp = new GetHomePostResponse() { HomePosts = homePosts };
+            var post = await PostRepo.RetrieveByID<Post>(model.ID);
+            var rsp = new GetPostResponse() { Post = post };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
         }
     }

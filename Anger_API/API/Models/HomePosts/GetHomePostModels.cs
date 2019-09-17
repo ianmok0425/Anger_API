@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 using Anger_Library;
 using Anger_API.Database.Views.HomePost;
 
-namespace Anger_API.API.Models.Posts
+namespace Anger_API.API.Models.HomePosts
 {
     public class GetHomePostRequest : APIRequest
     {
