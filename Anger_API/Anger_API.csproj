@@ -155,6 +155,7 @@
     <Compile Include="API\Controllers\Abstract\BaseApiController.cs" />
     <Compile Include="API\Controllers\Admin\AdminController.cs" />
     <Compile Include="API\Controllers\HomePosts\HomePostController.cs" />
+    <Compile Include="API\Controllers\HotPosts\HotPostController.cs" />
     <Compile Include="API\Controllers\Members\MemberController.cs" />
     <Compile Include="API\Controllers\Posts\PostController.cs" />
     <Compile Include="API\Controllers\PreMembers\PreMemberController.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="API\Models\Abstract\ResultFactory.cs" />
     <Compile Include="API\Models\Admins\GetRunningTextModels.cs" />
     <Compile Include="API\Models\Admins\LoginModels.cs" />
+    <Compile Include="API\Models\HotPosts\GetHotPostModels.cs" />
     <Compile Include="API\Models\Members\LoginModels.cs" />
     <Compile Include="API\Models\HomePosts\GetHomePostModels.cs" />
     <Compile Include="API\Models\Posts\GetPostModels.cs" />
@@ -238,6 +240,9 @@
     <Compile Include="Database\Views\HomePost\HomePost.cs" />
     <Compile Include="Database\Views\HomePost\HomePostRepository.cs" />
     <Compile Include="Database\Views\HomePost\IHomePostRepository.cs" />
+    <Compile Include="Database\Views\HotPost\HotPost.cs" />
+    <Compile Include="Database\Views\HotPost\HotPostRepository.cs" />
+    <Compile Include="Database\Views\HotPost\IHotPostRepository.cs" />
     <Compile Include="Database\Views\View.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Anger_API.Database.Views.HotPost
 {
     public interface IHotPostRepository : IRepository
     {
+        Task<List<HotPost>> RetrieveHotPostList(int startRowNo, int endRowNo);
     }
 }

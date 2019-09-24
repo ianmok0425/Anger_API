@@ -24,4 +24,13 @@ namespace Anger_API.Database
             }
         }
     }
+
+    public static class Operator
+    {
+        public static string Greater => ">";
+        public static string GreaterEqual => ">=";
+        public static string Equal => "=";
+        public static string Less => "<";
+        public static string LessEqual => "<=";
+    }
 }

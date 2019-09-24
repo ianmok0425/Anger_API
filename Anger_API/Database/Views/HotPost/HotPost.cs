@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Anger_API.Database.Views.HotPost
 {
-    public class HotPost
+    public class HotPost : View
     {
         public int RowNo { get; set; }
         public long MemberID { get; set; }
