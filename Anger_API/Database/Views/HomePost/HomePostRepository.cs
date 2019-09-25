@@ -14,7 +14,7 @@ namespace Anger_API.Database.Views.HomePost
     public class HomePostRepository : Repository, IHomePostRepository
     {
         public override string TableName => "VE_HomePost";
-        public async Task<List<HomePost>> RetrieveHomePostList(int startRowNo, int endRowNo)
+        public async Task<List<HomePost>> RetrieveHomePostList(int startRowNo)
         {
             DBManager.OpenConnection();
             var compiler = new SqlServerCompiler();
@@ -23,7 +23,8 @@ namespace Anger_API.Database.Views.HomePost
             var today = DateTime.Now.ToString("yyyy-MM-dd");
             var objs = await db.Query(TableName)
                 .WhereDate(nameof(HomePost.PostAt), today)
-                .WhereBetween(nameof(HomePost.RowNo), startRowNo, endRowNo)
+                .Limit(10)
+                .Offset(startRowNo)
                 .GetAsync<HomePost>();
             DBManager.CloseConnection();
             return objs.ToList();

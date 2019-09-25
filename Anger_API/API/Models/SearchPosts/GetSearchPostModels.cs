@@ -9,7 +9,6 @@ namespace Anger_API.API.Models.SearchPosts
     {
         public string SearchText { get; set; }
         public int StartRowNo { get; set; }
-        public int EndRowNo { get; set; }
     }
     public class GetSearchPostResponse : ResponseBase
     {

@@ -29,7 +29,7 @@ namespace Anger_API.API.Controllers.HomePosts
         {
             if (model == null) throw new NullReferenceException();
 
-            var homePosts = await HomePostRepo.RetrieveHomePostList(model.StartRowNo, model.EndRowNo);
+            var homePosts = await HomePostRepo.RetrieveHomePostList(model.StartRowNo);
 
             var rsp = new GetHomePostResponse() { HomePosts = homePosts };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);

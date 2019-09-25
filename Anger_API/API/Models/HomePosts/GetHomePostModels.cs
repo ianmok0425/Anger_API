@@ -8,7 +8,6 @@ namespace Anger_API.API.Models.HomePosts
     public class GetHomePostRequest : APIRequest
     {
         public int StartRowNo { get; set; }
-        public int EndRowNo { get; set; }
     }
     public class GetHomePostResponse : ResponseBase
     {

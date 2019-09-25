@@ -5,6 +5,6 @@ namespace Anger_API.Database.Views.SearchPost
 {
     public interface ISearchPostRepository : IRepository
     {
-        Task<List<SearchPost>> RetrieveSearchPostList(string searchText, int startRowNo, int endRowNo);
+        Task<List<SearchPost>> RetrieveSearchPostList(string searchText, int startRowNo);
     }
 }

@@ -8,7 +8,6 @@ namespace Anger_API.API.Models.HotPosts
     public class GetHotPostRquest : APIRequest
     {
         public int StartRowNo { get; set; }
-        public int EndRowNo { get; set; }
     }
     public class GetHotPostResponse : ResponseBase
     {

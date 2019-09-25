@@ -27,7 +27,7 @@ namespace Anger_API.API.Controllers.SearchPosts
         public async Task<AngerResult> GetSearchPost([FromUri] GetSearchPostRequest model)
         {
             if (model == null) throw new NullReferenceException();
-            var searchPosts = await SearchPostRepo.RetrieveSearchPostList(model.SearchText ,model.StartRowNo, model.EndRowNo);
+            var searchPosts = await SearchPostRepo.RetrieveSearchPostList(model.SearchText ,model.StartRowNo);
 
             var rsp = new GetSearchPostResponse() { SearchPosts = searchPosts };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);

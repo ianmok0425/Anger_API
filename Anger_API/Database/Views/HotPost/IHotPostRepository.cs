@@ -5,6 +5,6 @@ namespace Anger_API.Database.Views.HotPost
 {
     public interface IHotPostRepository : IRepository
     {
-        Task<List<HotPost>> RetrieveHotPostList(int startRowNo, int endRowNo);
+        Task<List<HotPost>> RetrieveHotPostList(int startRowNo);
     }
 }

@@ -29,7 +29,7 @@ namespace Anger_API.API.Controllers.HotPosts
         {
             if (model == null) throw new NullReferenceException();
 
-            var hotPosts = await HotPostRepo.RetrieveHotPostList(model.StartRowNo, model.EndRowNo);
+            var hotPosts = await HotPostRepo.RetrieveHotPostList(model.StartRowNo);
 
             var rsp = new GetHotPostResponse() { HotPosts = hotPosts };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);

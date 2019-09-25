@@ -14,7 +14,7 @@ namespace Anger_API.Database.Views.HotPost
     public class HotPostRepository : Repository, IHotPostRepository
     {
         public override string TableName => "VE_HotPost";
-        public async Task<List<HotPost>> RetrieveHotPostList(int startRowNo, int endRowNo)
+        public async Task<List<HotPost>> RetrieveHotPostList(int startRowNo)
         {
             DBManager.OpenConnection();
             var compiler = new SqlServerCompiler();
@@ -26,7 +26,8 @@ namespace Anger_API.Database.Views.HotPost
             var objs = await db.Query(TableName)
                 .WhereDate(nameof(HotPost.PostAt), Operator.LessEqual, todayDateString)
                 .WhereDate(nameof(HotPost.PostAt), Operator.GreaterEqual, past3DaysDateString)
-                .WhereBetween(nameof(HotPost.RowNo), startRowNo, endRowNo)
+                .Limit(10)
+                .Offset(startRowNo)
                 .GetAsync<HotPost>();
             DBManager.CloseConnection();
             return objs.ToList();
