@@ -160,6 +160,7 @@
     <Compile Include="API\Controllers\Posts\PostController.cs" />
     <Compile Include="API\Controllers\PreMembers\PreMemberController.cs" />
     <Compile Include="API\Controllers\RunningTexts\RunningTextController.cs" />
+    <Compile Include="API\Controllers\SearchPosts\SearchPostController.cs" />
     <Compile Include="API\Controllers\Tests\TestController.cs" />
     <Compile Include="API\Filters\ApiKeyAuthorizeFilter.cs" />
     <Compile Include="API\Models\Abstract\APIModel.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="API\Models\PreMembers\VerifyPreMemberModels.cs" />
     <Compile Include="API\Models\RunningTexts\GetRunningTextModels.cs" />
     <Compile Include="API\Models\RunningTexts\UploadRunningTextModels.cs" />
+    <Compile Include="API\Models\SearchPosts\GetSearchPostModels.cs" />
     <Compile Include="API\Models\Tests\TestModels.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DIResolver.cs" />
@@ -243,6 +245,9 @@
     <Compile Include="Database\Views\HotPost\HotPost.cs" />
     <Compile Include="Database\Views\HotPost\HotPostRepository.cs" />
     <Compile Include="Database\Views\HotPost\IHotPostRepository.cs" />
+    <Compile Include="Database\Views\SearchPost\ISearchPostRepository.cs" />
+    <Compile Include="Database\Views\SearchPost\SearchPost.cs" />
+    <Compile Include="Database\Views\SearchPost\SearchPostRepository.cs" />
     <Compile Include="Database\Views\View.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -25,7 +25,7 @@ namespace Anger_API.API.Controllers.HotPosts
 
         [Route("api/hotpost/get")]
         [HttpGet]
-        public async Task<AngerResult> GetHomePost([FromUri] GetHotPostRquest model)
+        public async Task<AngerResult> GetHotPost([FromUri] GetHotPostRquest model)
         {
             if (model == null) throw new NullReferenceException();
 
