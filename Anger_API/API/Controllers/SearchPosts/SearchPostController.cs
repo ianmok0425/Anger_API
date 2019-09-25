@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -27,7 +28,9 @@ namespace Anger_API.API.Controllers.SearchPosts
         public async Task<AngerResult> GetSearchPost([FromUri] GetSearchPostRequest model)
         {
             if (model == null) throw new NullReferenceException();
-            var searchPosts = await SearchPostRepo.RetrieveSearchPostList(model.SearchText ,model.StartRowNo);
+            List<SearchPost> searchPosts = new List<SearchPost>();
+            if(!string.IsNullOrWhiteSpace(model.SearchText))
+                searchPosts = await SearchPostRepo.RetrieveSearchPostList(model.SearchText, model.StartRowNo);
 
             var rsp = new GetSearchPostResponse() { SearchPosts = searchPosts };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
