@@ -90,6 +90,12 @@ namespace Anger_Library
             if (!result)
                 throw new APIInvalidFormat(display, value);
         }
+        public static void ExValidLong(string value, string display, ref long longValue)
+        {
+            bool result = Int64.TryParse(value, out longValue);
+            if (!result)
+                throw new APIInvalidFormat(display, value);
+        }
         public static void ExValidDouble(string value, string display, ref double dblValue)
         {
             bool result = double.TryParse(value, out dblValue);
@@ -137,6 +143,12 @@ namespace Anger_Library
             ExRequired(value, display);
 
             ExValidInt(value, display, ref intValue);
+        }
+        public static void ExRequiredLong(string value, string display, ref long longValue)
+        {
+            ExRequired(value, display);
+
+            ExValidLong(value, display, ref longValue);
         }
         public static void ExRequiredDecimal(string value, string display, ref decimal decValue)
         {

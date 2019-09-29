@@ -169,6 +169,7 @@
     <Compile Include="API\Models\Abstract\ResultFactory.cs" />
     <Compile Include="API\Models\Admins\GetRunningTextModels.cs" />
     <Compile Include="API\Models\Admins\LoginModels.cs" />
+    <Compile Include="API\Models\FavPosts\AddFavPostModels.cs" />
     <Compile Include="API\Models\FavPosts\GetFavPostModels.cs" />
     <Compile Include="API\Models\HotPosts\GetHotPostModels.cs" />
     <Compile Include="API\Models\Members\LoginModels.cs" />
@@ -221,6 +222,9 @@
     <Compile Include="Database\Admins\IAdminRepository.cs" />
     <Compile Include="Database\AngerDB.cs" />
     <Compile Include="Database\BaseTable.cs" />
+    <Compile Include="Database\FavPosts\FavPost.cs" />
+    <Compile Include="Database\FavPosts\FavPostRepository.cs" />
+    <Compile Include="Database\FavPosts\IFavPostRepository.cs" />
     <Compile Include="Database\IRepository.cs" />
     <Compile Include="Database\Logs\ErrorLog.cs" />
     <Compile Include="Database\Logs\Log.cs" />
