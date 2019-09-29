@@ -8,9 +8,6 @@ using Anger_API.API.Controllers.Abstract;
 using Anger_API.API.Models.Abstract;
 using Anger_API.API.Models.FavPosts;
 
-using Anger_API.Database.Views.FavPost;
-using Anger_API.Database.FavPosts;
-
 namespace Anger_API.API.Controllers.FavPosts
 {
     [ApiKeyAuthorize]
