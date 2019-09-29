@@ -34,6 +34,7 @@ namespace Anger_API.Database
             var objs = await db.Query(TableName)
                 .Where(nameof(ID), ID)
                 .GetAsync<T>();
+            DBManager.CloseConnection();
             return objs.FirstOrDefault();
         }
         public async Task Update(long ID, Table table)
@@ -44,6 +45,19 @@ namespace Anger_API.Database
             var objs = db.Query(TableName)
                 .Where(nameof(ID), ID)
                 .UpdateAsync(table);
+            DBManager.CloseConnection();
+        }
+        public async Task DeleteAsync(Table table)
+        {
+            DBManager.OpenConnection();
+            var compiler = new SqlServerCompiler();
+            var db = new QueryFactory(DBManager.Conn, compiler);
+
+            await db.Query(TableName)
+                .Where(nameof(Table.ID), table.ID)
+                .DeleteAsync();
+
+            DBManager.CloseConnection();
         }
     }
 }

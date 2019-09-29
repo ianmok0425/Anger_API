@@ -38,22 +38,30 @@ namespace Anger_API.API.Controllers.FavPosts
             var rsp = new GetFavPostResponse() { FavPosts = favPosts };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
         }
-        [Route("api/favpost/add")]
+        [Route("api/favpost/amend")]
         [HttpPost]
-        public async Task<AngerResult> AddFavPost([FromBody] AddFavPostRequest model)
+        public async Task<AngerResult> AmendFavPost([FromBody] AmendFavPostRequest model)
         {
             if (model == null) throw new NullReferenceException();
             model.Validate();
 
-            var favPost = new Database.FavPosts.FavPost()
+            var favPost = new Database.FavPosts.FavPost();
+
+            string favPostID = "";
+
+            if (model.ActionVal == 1)
             {
-                MemberID = model.MemberIDVal,
-                PostID = model.PostIDVal
-            };
+                favPost.MemberID = model.MemberIDVal;
+                favPost.PostID = model.PostIDVal;
+                favPostID = await FavPostRepo.CreateAsync(favPost);
+            }
+            else if (model.ActionVal == 2)
+            {
+                favPost.ID = model.IDVal.ToString();
+                await FavPostRepo.DeleteAsync(favPost);
+            }
 
-            await FavPostRepo.CreateAsync(favPost);
-
-            var rsp = new AddFavPostResponse() { };
+            var rsp = new AmendFavPostResponse() { FavPostID = favPostID };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
         }
     }
