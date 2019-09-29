@@ -154,6 +154,7 @@
     <Compile Include="API\Controllers\Abstract\AngerApiController.cs" />
     <Compile Include="API\Controllers\Abstract\BaseApiController.cs" />
     <Compile Include="API\Controllers\Admin\AdminController.cs" />
+    <Compile Include="API\Controllers\FavPosts\FavPostController.cs" />
     <Compile Include="API\Controllers\HomePosts\HomePostController.cs" />
     <Compile Include="API\Controllers\HotPosts\HotPostController.cs" />
     <Compile Include="API\Controllers\Members\MemberController.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="API\Models\Abstract\ResultFactory.cs" />
     <Compile Include="API\Models\Admins\GetRunningTextModels.cs" />
     <Compile Include="API\Models\Admins\LoginModels.cs" />
+    <Compile Include="API\Models\FavPosts\GetFavPostModels.cs" />
     <Compile Include="API\Models\HotPosts\GetHotPostModels.cs" />
     <Compile Include="API\Models\Members\LoginModels.cs" />
     <Compile Include="API\Models\HomePosts\GetHomePostModels.cs" />
@@ -239,6 +241,9 @@
     <Compile Include="Database\Tests\ITestRepository.cs" />
     <Compile Include="Database\Tests\Test.cs" />
     <Compile Include="Database\Tests\TestRepository.cs" />
+    <Compile Include="Database\Views\FavPost\FavPost.cs" />
+    <Compile Include="Database\Views\FavPost\FavPostRepository.cs" />
+    <Compile Include="Database\Views\FavPost\IFavPostRepository.cs" />
     <Compile Include="Database\Views\HomePost\HomePost.cs" />
     <Compile Include="Database\Views\HomePost\HomePostRepository.cs" />
     <Compile Include="Database\Views\HomePost\IHomePostRepository.cs" />

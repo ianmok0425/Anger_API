@@ -1,14 +1,15 @@
 ﻿using System;
 
-namespace Anger_API.Database.Views.HotPost
+namespace Anger_API.Database.Views.FavPost
 {
-    public class HotPost : View
+    public class FavPost : View
     {
-        public int RowNo { get; set; }
+        public long PostID { get; set; }
         public long MemberID { get; set; }
         public string Subject { get; set; }
         public string CoverUrl { get; set; }
         public DateTime PostAt { get; set; }
         public int ViewCount { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }
