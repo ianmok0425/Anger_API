@@ -107,6 +107,11 @@ namespace Anger_API.API.Models.Abstract
                     MessageTC = "管理員不存在";
                     MessageSC = "管理员不存在";
                     break;
+                case APIReturnCode.FavPostNotExist:
+                    Message = "Favourite Post Not Exist";
+                    MessageTC = "收藏文章不存在";
+                    MessageSC = "收藏文章不存在";
+                    break;
             }
         }
     }
@@ -147,6 +152,9 @@ namespace Anger_API.API.Models.Abstract
         MemberNotExist = 9,
 
         // Admin
-        AdminNotExist = 10
+        AdminNotExist = 10,
+
+        // Fav Post
+        FavPostNotExist = 11
     }
 }

@@ -28,5 +28,18 @@ namespace Anger_API.Database.Views.FavPost
             DBManager.CloseConnection();
             return objs.ToList();
         }
+        public async Task<FavPost> RetrieveFavPostListByPostIDAndMemberID(long memberID, long postID)
+        {
+            DBManager.OpenConnection();
+            var compiler = new SqlServerCompiler();
+            var db = new QueryFactory(DBManager.Conn, compiler);
+
+            var objs = await db.Query(TableName)
+                .Where(nameof(FavPost.MemberID), memberID)
+                .Where(nameof(FavPost.PostID), postID)
+                .GetAsync<FavPost>();
+            DBManager.CloseConnection();
+            return objs.ToList().FirstOrDefault();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -29,9 +30,19 @@ namespace Anger_API.API.Controllers.FavPosts
         public async Task<AngerResult> GetFavPost([FromUri] GetFavPostRequest model)
         {
             if (model == null) throw new NullReferenceException();
+            model.Validate();
 
-            var favPosts = await VE_FavPostRepo.RetrieveFavPostList(model.MemberID, model.StartRowNo);
+            var favPosts = new List<Database.Views.FavPost.FavPost>();
+            if (model.ActionVal == (int)GetFavPostAction.GetFavPostList)
+                favPosts = await VE_FavPostRepo.RetrieveFavPostList(model.MemberIDVal, model.StartRowNoVal);
+            else if (model.ActionVal == (int)GetFavPostAction.GetFavPostByPostIDAndMemberID)
+            {
+                var fp = await VE_FavPostRepo.RetrieveFavPostListByPostIDAndMemberID(model.MemberIDVal, model.PostIDVal);
 
+                if(fp == null) return ResultFactory.CreateResult(ReturnCode.Error500, APIReturnCode.FavPostNotExist);
+
+                favPosts.Add(fp);
+            }
             var rsp = new GetFavPostResponse() { FavPosts = favPosts };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
         }

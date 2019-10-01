@@ -9,5 +9,6 @@ namespace Anger_API.Database.Views.FavPost
     public interface IFavPostRepository : IRepository
     {
         Task<List<FavPost>> RetrieveFavPostList(long MemberID, int startRowNo);
+        Task<FavPost> RetrieveFavPostListByPostIDAndMemberID(long memberID, long postID);
     }
 }
