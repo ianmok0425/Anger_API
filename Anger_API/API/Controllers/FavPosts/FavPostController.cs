@@ -35,30 +35,37 @@ namespace Anger_API.API.Controllers.FavPosts
             var rsp = new GetFavPostResponse() { FavPosts = favPosts };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
         }
-        [Route("api/favpost/amend")]
+        [Route("api/favpost/add")]
         [HttpPost]
-        public async Task<AngerResult> AmendFavPost([FromBody] AmendFavPostRequest model)
+        public async Task<AngerResult> AddFavPost([FromBody] AddFavPostRequest model)
         {
             if (model == null) throw new NullReferenceException();
             model.Validate();
 
-            var favPost = new Database.FavPosts.FavPost();
-
-            string favPostID = "";
-
-            if (model.ActionVal == 1)
+            var favPost = new Database.FavPosts.FavPost()
             {
-                favPost.MemberID = model.MemberIDVal;
-                favPost.PostID = model.PostIDVal;
-                favPostID = await FavPostRepo.CreateAsync(favPost);
-            }
-            else if (model.ActionVal == 2)
-            {
-                favPost.ID = model.IDVal.ToString();
-                await FavPostRepo.DeleteAsync(favPost);
-            }
+                MemberID = model.MemberIDVal,
+                PostID = model.PostIDVal
+            }; 
+            string favPostID = await FavPostRepo.CreateAsync(favPost);
 
             var rsp = new AmendFavPostResponse() { FavPostID = favPostID };
+            return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
+        }
+        [Route("api/favpost/delete")]
+        [HttpDelete]
+        public async Task<AngerResult> DeleteFavPost([FromBody] DeleteFavPostRequest model)
+        {
+            if (model == null) throw new NullReferenceException();
+            model.Validate();
+
+            var favPost = new Database.FavPosts.FavPost()
+            {
+                ID = model.FavPostID
+            };
+            await FavPostRepo.DeleteAsync(favPost);
+
+            var rsp = new DeleteFavPostResponse() { };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
         }
     }

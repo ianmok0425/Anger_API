@@ -169,7 +169,8 @@
     <Compile Include="API\Models\Abstract\ResultFactory.cs" />
     <Compile Include="API\Models\Admins\GetRunningTextModels.cs" />
     <Compile Include="API\Models\Admins\LoginModels.cs" />
-    <Compile Include="API\Models\FavPosts\AmendFavPostModels.cs" />
+    <Compile Include="API\Models\FavPosts\AddFavPostModels.cs" />
+    <Compile Include="API\Models\FavPosts\DeleteFavPostModels.cs" />
     <Compile Include="API\Models\FavPosts\GetFavPostModels.cs" />
     <Compile Include="API\Models\HotPosts\GetHotPostModels.cs" />
     <Compile Include="API\Models\Members\LoginModels.cs" />
