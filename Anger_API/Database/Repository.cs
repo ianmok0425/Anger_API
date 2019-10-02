@@ -18,7 +18,7 @@ namespace Anger_API.Database
         public virtual string TableName { get; set; }
         public async Task<string> CreateAsync(Table table)
         {
-            table.CreatedAt = DateTime.UtcNow;
+            table.CreatedAt = DateTime.Now;
             DBManager.OpenConnection();
             var compiler = new SqlServerCompiler();
             var db = new QueryFactory(DBManager.Conn, compiler);
