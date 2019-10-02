@@ -21,11 +21,9 @@ namespace Anger_API.Database.Views.HotPost
             var db = new QueryFactory(DBManager.Conn, compiler);
 
             var today = DateTime.Now;
-            var past3DaysDateString = today.AddDays(-3).ToString("yyyy-MM-dd");
-            var todayDateString = today.ToString("yyyy-MM-dd");
+            var past3Days = today.AddDays(-3);
             var objs = await db.Query(TableName)
-                .WhereDate(nameof(HotPost.PostAt), Operator.LessEqual, todayDateString)
-                .WhereDate(nameof(HotPost.PostAt), Operator.GreaterEqual, past3DaysDateString)
+                .WhereBetween(nameof(HotPost.PostAt), past3Days, today)
                 .Limit(10)
                 .Offset(startRowNo)
                 .GetAsync<HotPost>();
