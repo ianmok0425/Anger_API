@@ -36,7 +36,7 @@ namespace Anger_API.API.Controllers.Posts
         }
         [HttpPost]
         [Route("api/post/upload")]
-        public async Task<AngerResult> RegPreMember([FromBody] UploadPostRequest model)
+        public async Task<AngerResult> UploadPost([FromBody] UploadPostRequest model)
         {
             if (model == null) throw new NullReferenceException();
             model.Validate();

@@ -42,7 +42,7 @@ namespace Anger_API.Database
             DBManager.OpenConnection();
             var compiler = new SqlServerCompiler();
             var db = new QueryFactory(DBManager.Conn, compiler);
-            var objs = db.Query(TableName)
+            var objs = await db.Query(TableName)
                 .Where(nameof(ID), ID)
                 .UpdateAsync(table);
             DBManager.CloseConnection();
