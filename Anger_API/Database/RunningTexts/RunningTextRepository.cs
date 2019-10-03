@@ -39,7 +39,7 @@ namespace Anger_API.Database.RunningTexts
             var objs = await db.Query(TableName)
                 .Where(nameof(RunningText.Approved), true)
                 .Where(nameof(RunningText.EmailNotice), true)
-                .WhereBetween(nameof(RunningText.PostAt), today, yesterday)
+                .WhereBetween(nameof(RunningText.PostAt), yesterday, today)
                 .GetAsync<RunningText>();
             DBManager.CloseConnection();
             return objs.ToList();
