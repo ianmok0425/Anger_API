@@ -83,6 +83,11 @@ namespace Anger_API.API.Controllers.Posts
             if (model == null) throw new NullReferenceException();
             var post = await PostRepo.RetrieveByID<Post>(model.ID);
             var rsp = new GetPostResponse() { Post = post };
+
+            // Add View Count
+            post.ViewCount += 1;
+            await PostRepo.Update(Int64.Parse(post.ID), post);
+
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
         }
     }
