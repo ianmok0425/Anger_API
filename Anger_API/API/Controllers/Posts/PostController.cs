@@ -49,13 +49,16 @@ namespace Anger_API.API.Controllers.Posts
 
             var utcNow = DateTime.UtcNow;
 
+            Random random = new Random();
+            int randomViewCount = random.Next(100, 500);
+
             var post = new Post()
             {
                 MemberID = model.MemberID,
                 Subject = model.Subject,
                 CoverUrl = null,
                 Content = model.Content,
-                ViewCount = 0,
+                ViewCount = randomViewCount,
                 Approved = model.Approve,
                 PostAt = model.PostAt,
                 RejectReason = model.RejectReason,
