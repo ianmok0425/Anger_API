@@ -34,12 +34,12 @@ namespace Anger_API.Database.RunningTexts
             var db = new QueryFactory(DBManager.Conn, compiler);
 
             var today = DateTime.Now;
-            var tomorrow = today.AddDays(1);
+            var yesterday = today.AddDays(-1);
 
             var objs = await db.Query(TableName)
                 .Where(nameof(RunningText.Approved), true)
                 .Where(nameof(RunningText.EmailNotice), true)
-                .WhereBetween(nameof(RunningText.PostAt), today, tomorrow)
+                .WhereBetween(nameof(RunningText.PostAt), today, yesterday)
                 .GetAsync<RunningText>();
             DBManager.CloseConnection();
             return objs.ToList();

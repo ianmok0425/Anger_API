@@ -21,9 +21,9 @@ namespace Anger_API.Database.Views.HomePost
             var db = new QueryFactory(DBManager.Conn, compiler);
 
             var today = DateTime.Now;
-            var tomorrow = today.AddDays(1);
+            var yesterday = today.AddDays(-1);
             var objs = await db.Query(TableName)
-                .WhereBetween(nameof(HomePost.PostAt), today, tomorrow)
+                .WhereBetween(nameof(HomePost.PostAt), today, yesterday)
                 .Limit(10)
                 .Offset(startRowNo)
                 .GetAsync<HomePost>();
