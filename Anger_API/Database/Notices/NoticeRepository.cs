@@ -25,6 +25,7 @@ namespace Anger_API.Database.Notices
             var objs = await db.Query(TableName)
                 .Where(nameof(Notice.StartAt), Operator.LessEqual, now)
                 .Where(nameof(Notice.EndAt), Operator.GreaterEqual, now)
+                .OrderByDesc(nameof(Notice.StartAt))
                 .GetAsync<Notice>();
 
             DBManager.CloseConnection();
