@@ -39,7 +39,7 @@ namespace Anger_API.API.Controllers.FavPosts
             {
                 var fp = await VE_FavPostRepo.RetrieveFavPostListByPostIDAndMemberID(model.MemberIDVal, model.PostIDVal);
 
-                if(fp != null) favPosts.Add(fp);
+                if(fp != null)  favPosts.Add(fp);
             }
             var rsp = new GetFavPostResponse() { FavPosts = favPosts };
             return ResultFactory.CreateResult(ReturnCode.Created201, APIReturnCode.Success, rsp);
