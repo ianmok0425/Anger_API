@@ -21,7 +21,7 @@ namespace Anger_API.API.Controllers.Settings
         {
             SettingRepo = settingRepo ?? throw new ArgumentNullException(nameof(SettingRepo));
         }
-        [Route("api/favpost/get")]
+        [Route("api/setting/get")]
         [HttpGet]
         public async Task<AngerResult> GetFavPost([FromUri] GetSettingRequest model)
         {
